@@ -1,7 +1,7 @@
 function changeBackground(nodes, items) {
     for (let j = 0; j < nodes.length; j++) {
         if (items.indexOf(j) == -1) {
-            nodes[j].style.backgroundColor = '#179b45'
+            nodes[j].style.backgroundColor = '#179b45ff'
             nodes[j].style.color = 'black'
             nodes[j].style.borderInline = 'none'
         } else {
