@@ -22,12 +22,12 @@
             <div class="container-inner">
                 <%pagelyrics.forEach(bar=> {bar = bar.toString();
                     if (bar == '') { ;%>
-                    <br>
-                    <% }else if (bar[0]==' [' ){ %>
+                    <br> 
+                    <% }else if (bar[0]=="[" ){ %>
             <p id=' bar'>
-                <span class="marker">
-                    <%=bar %>
-                </span>
+            <span class="marker">
+                <%=bar %>
+            </span>
             </p><br>
             <%}else{%>
                 <p id="bar">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div id="colors">
-                            
+
                         </div>
                     </div>
                     </div>
@@ -105,7 +105,8 @@
                             console.log(colorThief.getPalette(img, 10));
                         } else {
                             image.addEventListener('load', function () {
-                                console.log(colorThief.getPalette(img, 10));});
+                                console.log(colorThief.getPalette(img, 10));
+                            });
                         }
                     </script>
 
