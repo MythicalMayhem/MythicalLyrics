@@ -12,7 +12,7 @@
 
 
 html {
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,27 +29,26 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 3cm;
+    
 }
 #body {
+    width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center; 
     flex-wrap: wrap;
-    gap: 1cm;
+    gap: 2cm;
 }
 
-#nav {
-    display: block;
-    height: 50px;
-    width: fit-content;
-
+#nav {  
     display: flex;
     flex-direction: row;
     justify-content:center;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: 3cm;
+    column-gap: 2cm;
     row-gap: 20px;
     width: fit-content;
     height: fit-content;
@@ -79,9 +78,9 @@ body {
     background-color: #179b45;
     position: relative;
     height: 80%;
-    max-height: 600px;
+    max-height: 500px;
     min-width: 300px;
-    width: 50%;
+    width: 500px;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.65);
     display: flex;
     flex-wrap: nowrap;
@@ -276,7 +275,7 @@ footer p {
 footer a {
     color: unset;
 }
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 950px) {
     body {
         height: fit-content;
         display: flex;
@@ -287,6 +286,7 @@ footer a {
 
     #lyricsContainer { 
         height: 25em;
+        width: 75%;
     }
 
     p {

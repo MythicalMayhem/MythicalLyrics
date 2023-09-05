@@ -44,7 +44,7 @@
                         <center><button onclick="downloadimage()" id="downloader">DOWNLOAD</button></center>
                         <div id="mainContainer">
                             <div id="identity">
-                                <img src="<%=art%>" crossorigin="anonymous" alt="">
+                                <img id="albumArt" src="<%=art%>" crossorigin="anonymous" alt="">
                                 <div id="name">
                                     <p>
                                         <%=title%>
@@ -65,6 +65,9 @@
                                     alt="spotify icon" crossorigin="anonymous" />
                             </div>
                         </div>
+                        <div id="colors">
+                            
+                        </div>
                     </div>
                     </div>
                     <footer>
@@ -74,6 +77,9 @@
                             <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
                         </p>
                     </footer>
+                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+                    <script src="clientlyrics.js"></script>
                     <script>
                         function downloadimage() {
                             var container = document.getElementById("mainContainer");
@@ -90,9 +96,19 @@
                                 container.style.boxShadow = '0px 0px 20px rgba(0, 0, 0, 0.747)'
                             });
                         }
+                        function rgbToHex(r, g, b) {
+                            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+                        }
+                        const colorThief = new ColorThief();
+                        const img = document.querySelector('#albumArt');
+                        if (img.complete) {
+                            console.log(colorThief.getPalette(img, 10));
+                        } else {
+                            image.addEventListener('load', function () {
+                                console.log(colorThief.getPalette(img, 10));});
+                        }
                     </script>
-                    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-                    <script src="clientlyrics.js"></script>
+
 
                     </body>
 

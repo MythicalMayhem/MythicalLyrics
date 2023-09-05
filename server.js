@@ -45,10 +45,8 @@ async function token(base, code) {
 
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('home')
   const src = 'https://images.genius.com/d1072d91baa4d93f3eef3b6b86b3e1aa.1000x1000x1.png'
-  console.log('here')
-
   getPixels(src, (err, pixels) => {
     if (!err) {
       const data = [...pixels.data]
@@ -64,20 +62,20 @@ app.get('/', (req, res) => {
 app.get('/authorize', (req, res) => {
   res.redirect(redir(req.protocol + '://' + req.get('host')))
 })
-app.get(/\/edit/, (req, res) => { res.render('search') })
-app.get(/\/privacy/, (req, res) => { res.render('privacy') })
-app.get(/\/about/, (req, res) => { res.render('about') })
+app.get(/^\/search/, (req, res) => { res.render('search') })
+app.get(/^\/privacy/, (req, res) => { res.render('privacy') })
+app.get(/^\/about/, (req, res) => { res.render('about') })
 
 
-app.get(/\/response.*/, (req, res) => {
+app.get(/^\/response/, (req, res) => {
   var code = req.query.code || null;
   token(req.protocol + '://' + req.get('host'), code).then(function (result) {
-    res.redirect('/edit?token=' + result['access_token'])
+    res.redirect('/search?token=' + result['access_token'])
   })
 })
 
 
-app.get(/\/spotifylyrics/, (req, res) => {
+app.get(/^\/spotifylyrics/, (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
@@ -101,7 +99,7 @@ app.get(/\/spotifylyrics/, (req, res) => {
 
 })
 
-app.get(/\/geniuslyrics/, (req, res) => {
+app.get(/^\/geniuslyrics/, (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))

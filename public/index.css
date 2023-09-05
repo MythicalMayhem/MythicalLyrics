@@ -19,17 +19,14 @@ body {
 
 
 
-#nav {
-    display: block;
-    height: 50px;
-    width: fit-content;
-
+#nav {  
     display: flex;
     flex-direction: row;
     justify-content:center;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    column-gap: 2cm;
+    row-gap: 20px;
     width: fit-content;
     height: fit-content;
 
