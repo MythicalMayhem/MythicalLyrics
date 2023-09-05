@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon --inspect server.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "extract-colors": "^4.0.1",
     "genius-lyrics-api": "^3.2.0",
+    "get-pixels": "^3.3.3",
     "html2canvas": "^1.4.1",
     "node-fetch": "^2.7.0"
   },
