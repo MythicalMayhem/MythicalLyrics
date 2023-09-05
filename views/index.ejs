@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav id="nav">
+        <a href="/">home</a>
+        <a href="/about">About</a>
+        <a href="/privacy">Privacy</a>
+    </nav>
+    <div id="options">
+        <div id="spotifyopt">
+            <span>search by spotify </span>
+            <button class="tooltip" onclick='window.location="/authorize"'>
+                Log in
+                <span class="tooltiptext">currently not approved by spotify :(</span>
+            </button>
+        </div>
+        <center>OR</center>
+        <div id="geniusopt">
+            <center><span>search from Genius</span></center>
+            <div><label for="track">Song</label><input id="trackname" name="track" type="text"></div>
+            <div><label for="artist">Artist</label><input id="artistname" name="artist" type="text"></div>
+            <center><button id="submitter" onclick="geniusredir()">SUBMIT</button></center>
+        </div>
+    </div>
+    <footer>
+        <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
+        <p>Made Possible By
+            <a href="https://www.genius.com" target="_blank">Genius.com</a> and
+            <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
+        </p>
+    </footer>
+    <script>
+        function geniusredir() {
+            var trackname = document.getElementById('trackname').value.trim()
+            var artistname = document.getElementById('artistname').value.trim()
+            if (trackname.length>0 && artistname.length>0) {
+                var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
+                newurl.pathname = '/geniuslyrics' 
+                newurl.searchParams.set("artist", artistname)
+                newurl.searchParams.set("track", trackname)
+                console.log(trackname,artistname)
+                window.location.href = newurl.toString()
+            }
+        }
+    </script>
+</body>
+
+</html>

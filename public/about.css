@@ -1,0 +1,120 @@
+html,body {margin: 0;height: 100%;}
+body {
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3cm; 
+}
+
+
+#nav {
+    display: block;
+    height: 50px;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+
+    padding: 15px ; 
+    border-radius: 10px;
+    border-bottom: 3px solid white;
+ 
+}
+
+#nav a {
+    padding: 0 10px;
+    font-family: sans-serif;
+    color: whitesmoke;
+    font-size: 25px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+#nav a:hover {
+    color: rgb(89, 223, 89);
+}
+
+
+#main{ 
+    max-width: 850px;
+    margin: 0 10px;
+    font-family: sans-serif;
+    font-size: smaller; 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1cm;
+    background-color: #181818;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.781);
+    padding: 1cm 0;
+}
+
+fieldset{ 
+    box-sizing: border-box;
+    width: 90%;
+    border-top: none;
+    border-right: none;
+    border-radius: 20px;
+    padding: 20px
+}
+fieldset legend{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+fieldset a {
+    color: #1fb855;
+    font-weight: bolder;
+}
+fieldset p {
+    font-size: 15px;
+    font-weight: lighter;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 0.05px;
+    word-spacing: 0.001px;
+} 
+
+fieldset ul{
+    margin: 0;
+    padding: 0;
+}
+fieldset ul li{
+    margin: 15px;
+    padding: 0;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: space-evenly;
+    gap: 20px;
+    width: fit-content;
+    max-width: 700px;  
+
+    box-sizing: border-box;
+    padding: 17px; 
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: none;    
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+}
+footer p {
+    margin: unset;
+}
+footer a {
+    color: unset;
+}

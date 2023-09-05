@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <nav id="nav">
+        <a href="/">home</a>
+        <a href="/about">About</a>
+        <a href="/privacy">Privacy</a>
+    </nav>
+    <div id="main">
+        <fieldset>
+            <legend>Motive</legend>
+            <p>
+                This is a personal project made by <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem (me)</a>.
+                At some point in time around July 2023, the Spotify lyrics selection option was glitched a bit, I personally use that 
+                feature a lot and could not stand waiting for the devs to fix it because it already took alot longer than 
+                expected. As of today ( September 2023 ) it is probably fixed though.
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>How it works</legend>
+            <ul>
+                <li>
+                    <h2>using Spotify search</h2>
+                    <p>
+                        By logging in, the app receives your token to be used to search for tracks,then redirects to '/search'
+                        After selecting the desired track, it forwards the track details  (track owner/artist and track name)
+                        to the Genius.com api, after finding the song on Genius the only thing left is to get the lyrics and display them.
+                    </p>
+                </li>
+                <li>
+                    <h2>using Genius search</h2>
+                    <p>
+                        Without a Spotify token, the only method left is to search directly on Genius.com.
+                        1. Gets song from inputs in the homepage
+                        2. Gets lyrics and displays them on /lyrics  
+                    </p>
+                </li>
+                <li>
+                    <h2>the searching isn't perfect! (yet)</h2>
+                    <p>
+                        querying isn't really perfect, and not many tests have been run.
+                        if ever encountered any errors, or got the wrong lyrics or track, 
+                            please create an issue on the <a href="https://github.com/MythicalMayhem/MythicalLyrics" target="_blank">github repository</a>
+                        or report it somewhere.
+                    </p>
+                </li> 
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>open source!!</legend>
+            <p>
+                This project is open source, with many more features to be added.
+                Every contribution is appreciated.
+                Check out the Github repository <a href="https://github.com/MythicalMayhem/MythicalLyrics" target="_blank">HERE</a>.
+                <center><h5>( Make sure to give it a Star ;) <3 )</h5></center>
+            </p>
+        </fieldset>
+    </div>
+    <footer>
+        <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
+        <p>Made Possible By
+            <a href="https://www.genius.com" target="_blank">Genius.com</a> and
+            <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
+        </p>
+    </footer>   
+</body>
+</html>

@@ -1,0 +1,203 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    min-height: 100%;
+    height: fit-content;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1cm;
+}
+
+
+
+#nav {
+    display: block;
+    height: 50px;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    height: fit-content;
+
+    padding: 15px ; 
+    border-radius: 10px;
+    border-bottom: 3px solid white;
+ 
+}
+
+#nav a {
+    padding: 0 10px;
+    font-family: sans-serif;
+    color: whitesmoke;
+    font-size: 25px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+#nav a:hover {
+    color: rgb(89, 223, 89);
+}
+
+#options {
+    width: 80%;
+    min-width: 200px;
+    height: fit-content;
+    margin-bottom: auto;
+    background-color: #191919;
+    box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 30px;
+    padding: 1cm 20px;
+}
+
+#spotifyopt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+#spotifyopt a {
+    line-height: 20px;
+    text-decoration: none;
+    color: #121212;
+}
+
+#spotifyopt a:link {
+    text-decoration: none;
+    color: #121212;
+}
+
+#spotifyopt button {
+    font-family: sans-serif;
+    font-weight: bolder;
+    border: none;
+    display: block;
+    font-size: 1em;
+    height: 1cm;
+    text-align: center;
+    width: fit-content;
+    color: black;
+    background-color: #1ed760;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.tooltiptext {
+    visibility: visible; 
+    background-color: black;
+    color: #fff;
+    text-align: center; 
+    position: absolute;  
+    font-size: 0.5em;
+    margin-left: -3.5cm;
+    margin-top: 1cm;
+    padding: 3px;
+    border-radius: 3px;
+    z-index: 2;
+
+}
+
+
+#geniusopt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+#geniusopt center {
+    width: 100%;
+}
+
+#geniusopt div {
+    height: fit-content;
+    width: 40%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#geniusopt div:nth-child(3) {
+    width: 39.3%;
+}
+
+#geniusopt div input {
+    width: 75%;
+    min-width: 200px;
+    background-color: unset;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid rgba(245, 245, 245, 0.61);
+    padding-bottom: 10px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    color: white;
+}
+
+#submitter {
+    background: none;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: 1.5px underline;
+    border: none;
+    font-weight: lighter;
+    color: #1ed760;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 50%;
+    max-width: 700px;
+    min-width: 250px;
+    
+    box-sizing: border-box;
+    padding: 17px; 
+    margin-bottom: 10px;
+    
+    border-radius: 5px;
+    background-color: #191919c7;    
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+}
+footer p {
+    margin: unset;
+}
+footer a {
+    color: unset;
+}

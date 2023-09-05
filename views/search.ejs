@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search by spotify </title>
+    <link rel="stylesheet" href="search.css">
+</head>
+
+<body>
+    <nav id="nav">
+        <a href="/">home</a>
+        <a href="/about">About</a>
+        <a href="/privacy">Privacy</a>
+    </nav>
+    <div id="seachContainer">
+        <input spellcheck="false" style="font-size: 35px; padding: 10px;" name="searcher" type="text" oninput="PopulateSearch()" id="searcher" placeholder="search song name/link"><br>
+        
+    </div>
+    <div id="container">
+        
+    </div>
+    <footer>
+        <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
+        <p>Made Possible By
+            <a href="https://www.genius.com" target="_blank">Genius.com</a> and
+            <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
+        </p>
+    </footer>
+    <script src="./clientsearch.js"></script>
+
+</body>
+</html>
