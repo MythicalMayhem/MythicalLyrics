@@ -16,8 +16,9 @@
             <a href="/privacy">Privacy</a>
         </div>
         <div id="account">
-            <p>Account Name</p>
-            <img src="" alt="" height="50px" width="50px">
+            <button id="login" onclick="window.location='/authorize'">Log in</button>
+            <p>test</p>
+            <img src="" alt="" height="64px" width="64px">
         </div>
     </nav>
     <div id="wrapper">
@@ -25,27 +26,27 @@
             <div id="identity">
                 <img src="" alt="" height="80px" width="80px">
                 <div id="name">
-                    <span>Title</span>
-                    <span>Artist</span>
-                </div>
-                <div id="Time">
-                    <span id="elapsed">1:00</span>
-                    <span id="elapsed">/</span>
-                    <span id="full">3:00</span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-            <div id="tracker">
-                <div id="line"></div>
+            <button id="login" onclick="window.location='/authorize'">Log in</button>
+            <div id="history">
+                <div><img src="" height="30px" width="30px"> <span></span></div>
+                <div><img src="" height="30px" width="30px"> <span></span></div>
+                <div><img src="" height="30px" width="30px"> <span></span></div>
+                <div><img src="" height="30px" width="30px"> <span></span></div>
+                <div><img src="" height="30px" width="30px"> <span></span></div>
             </div>
-            <button id="login">Log in</button>
         </div>
         <div id="introduction">
             <div id="para">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <h1>Mythical lyrics</h1>
+                <p>Music lyrics at a glance</p>
             </div>
-            <div id="images"> 
+            <div id="images">
                 <img src="svg/lyricexp1.png" alt="" srcset="">
-                <img src="svg/lyricexp2.png" alt="" srcset=""> 
+                <img src="svg/lyricexp2.png" alt="" srcset="">
                 <img src="svg/lyricexp3.png" alt="" srcset="">
             </div>
         </div>
@@ -57,7 +58,14 @@
             <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
         </p>
     </footer>
+    <script src="./clienthome.js"></script>
     <script>
+        document.cookie = {
+            autoLogin: false,
+            currentToken: {
+
+            }
+        }
         function geniusredir() {
             var trackname = document.getElementById('trackname').value.trim()
             var artistname = document.getElementById('artistname').value.trim()

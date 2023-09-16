@@ -1,4 +1,4 @@
- 
+
 function mtmas(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -53,7 +53,6 @@ async function PopulateSearch() {
     const arr = await search()
     document.getElementById('container').innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
-        const element = arr[i];
         var artists = ''
         for (index of arr[i].artists) {
             artists += `<a id='artist' target="_blank" href=${index['link']}> ${index['name']},</a>`
@@ -81,33 +80,33 @@ async function PopulateSearch() {
         container.setAttribute("artist", `${arr[i].artists[0].name}`)
         container.setAttribute("art", `${arr[i].img}`)
         container.innerHTML = template
- 
-        container.addEventListener('click', (e) => { 
-            if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title' ){return}else { 
-                var newurl = new URL(window.location.protocol+'//'+window.location.hostname+':'+window.location.port)
+
+        container.addEventListener('click', (e) => {
+            if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
+                var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
                 newurl.pathname = '/spotifylyrics'
-                newurl.searchParams.set("artist",container.getAttribute('artist'))
-                newurl.searchParams.set("track" ,container.getAttribute('track'))
-                newurl.searchParams.set("albumart" ,container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/')+1))
+                newurl.searchParams.set("artist", container.getAttribute('artist'))
+                newurl.searchParams.set("track", container.getAttribute('track'))
+                newurl.searchParams.set("albumart", container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/') + 1))
                 window.location.href = newurl.toString()
-            } 
+            }
         })
-        container.addEventListener('touchstart', (e) => { 
-            if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title' ){return}else { 
-                var newurl = new URL(window.location.protocol+'//'+window.location.hostname+':'+window.location.port)
+        container.addEventListener('touchstart', (e) => {
+            if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
+                var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
                 newurl.pathname = '/spotifylyrics'
-                newurl.searchParams.set("artist",container.getAttribute('artist'))
-                newurl.searchParams.set("track" ,container.getAttribute('track'))
-                newurl.searchParams.set("albumart" ,container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/')+1))
+                newurl.searchParams.set("artist", container.getAttribute('artist'))
+                newurl.searchParams.set("track", container.getAttribute('track'))
+                newurl.searchParams.set("albumart", container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/') + 1))
                 window.location.href = newurl.toString()
-            } 
+            }
         })
         document.getElementById('container').appendChild(container)
     }
 
 }
 async function search() {
-    const searchterm = document.getElementById('searcher').value.trim() 
+    const searchterm = document.getElementById('searcher').value.trim()
     try {
         if (searchterm.startsWith('https://open.spotify.com/track/')) {
             const id = searchterm.split('track/')[1].split('?')[0]

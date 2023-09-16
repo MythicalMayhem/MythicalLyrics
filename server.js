@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 function redir(base) {
   var redirect_uri = base + "/response";
-  var scope = "user-read-recently-played";
+  var scope = "user-read-recently-played user-read-currently-playing";
   var url = "https://accounts.spotify.com/authorize";
   url += "?response_type=code";
   url += "&client_id=" + encodeURIComponent(client_id);
@@ -44,33 +44,30 @@ async function token(base, code) {
 }
 
 
-app.get('/', (req, res) => {
-  res.render('home')
-  const src = 'https://images.genius.com/d1072d91baa4d93f3eef3b6b86b3e1aa.1000x1000x1.png'
+/*const src = 'https://images.genius.com/d1072d91baa4d93f3eef3b6b86b3e1aa.1000x1000x1.png'
   getPixels(src, (err, pixels) => {
     if (!err) {
       const data = [...pixels.data]
       const width = Math.round(Math.sqrt(data.length / 4))
       const height = width
-
       extractColors({ data, width, height })
-        // .then(console.log)
-        // .catch(console.log)
+      // .then(console.log)
+      // .catch(console.log)
     }
-  })
-})
-app.get('/authorize', (req, res) => {
-  res.redirect(redir(req.protocol + '://' + req.get('host')))
-})
+  })*/
+
+app.get('/', (req, res) => { res.redirect('/home') })
 app.get(/^\/search/, (req, res) => { res.render('search') })
 app.get(/^\/privacy/, (req, res) => { res.render('privacy') })
 app.get(/^\/about/, (req, res) => { res.render('about') })
+app.get('/home', (req, res) => { res.render('home') })
+app.get('/authorize', (req, res) => { res.redirect(redir(req.protocol + '://' + req.get('host'))) })
 
-
-app.get(/^\/response/, (req, res) => {
+app.get(/^(\/response)/, (req, res) => {
   var code = req.query.code || null;
   token(req.protocol + '://' + req.get('host'), code).then(function (result) {
-    res.redirect('/search?token=' + result['access_token'])
+    console.log(result)
+    res.redirect('/home?token=' + result['access_token']+'&refresh='+result['resfresh_token'])
   })
 })
 
@@ -116,7 +113,7 @@ app.get(/^\/geniuslyrics/, (req, res) => {
       artist: R[0].artists,
       optimizeQuery: true,
     }
-    
+
     getLyrics(opts).then((lyrics) => {
       if (lyrics) {
         let newlyrics = lyrics.split('\n')
