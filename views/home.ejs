@@ -10,24 +10,44 @@
 
 <body>
     <nav id="nav">
-        <a href="/">home</a>
-        <a href="/about">About</a>
-        <a href="/privacy">Privacy</a>
-    </nav>
-    <div id="options">
-        <div id="spotifyopt">
-            <span>search by spotify </span>
-            <button class="tooltip" onclick='window.location="/authorize"'>
-                Log in
-                <span class="tooltiptext">currently not approved by spotify :(</span>
-            </button>
+        <div id="pages">
+            <a href="/">home</a>
+            <a href="/about">About</a>
+            <a href="/privacy">Privacy</a>
         </div>
-        <center>OR</center>
-        <div id="geniusopt">
-            <center><span>search from Genius</span></center>
-            <div><label for="track">Song</label><input id="trackname" name="track" type="text"></div>
-            <div><label for="artist">Artist</label><input id="artistname" name="artist" type="text"></div>
-            <center><button id="submitter" onclick="geniusredir()">SUBMIT</button></center>
+        <div id="account">
+            <p>Account Name</p>
+            <img src="" alt="" height="50px" width="50px">
+        </div>
+    </nav>
+    <div id="wrapper">
+        <div id="player">
+            <div id="identity">
+                <img src="" alt="" height="80px" width="80px">
+                <div id="name">
+                    <span>Title</span>
+                    <span>Artist</span>
+                </div>
+                <div id="Time">
+                    <span id="elapsed">1:00</span>
+                    <span id="elapsed">/</span>
+                    <span id="full">3:00</span>
+                </div>
+            </div>
+            <div id="tracker">
+                <div id="line"></div>
+            </div>
+            <button id="login">Log in</button>
+        </div>
+        <div id="introduction">
+            <div id="para">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+            </div>
+            <div id="images"> 
+                <img src="svg/lyricexp1.png" alt="" srcset="">
+                <img src="svg/lyricexp2.png" alt="" srcset=""> 
+                <img src="svg/lyricexp3.png" alt="" srcset="">
+            </div>
         </div>
     </div>
     <footer>
@@ -41,12 +61,12 @@
         function geniusredir() {
             var trackname = document.getElementById('trackname').value.trim()
             var artistname = document.getElementById('artistname').value.trim()
-            if (trackname.length>0 && artistname.length>0) {
+            if (trackname.length > 0 && artistname.length > 0) {
                 var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-                newurl.pathname = '/geniuslyrics' 
+                newurl.pathname = '/geniuslyrics'
                 newurl.searchParams.set("artist", artistname)
                 newurl.searchParams.set("track", trackname)
-                console.log(trackname,artistname)
+                console.log(trackname, artistname)
                 window.location.href = newurl.toString()
             }
         }
