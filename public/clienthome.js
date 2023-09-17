@@ -75,14 +75,14 @@ function PopulateProfile() {
 }
 function PopulateRecent() {
     getRecent(Code()).then((res) => {
-        while (document.getElementById('history').hasChildNodes()) { document.getElementById('history').firstChild.remove() }
+        while (document.getElementById('history').hasChildNodes()) { document.getElementById('history').removeChild(document.getElementById('history').firstChild) }
         for (const i of res['items']) {
             let item = new trackConstruct(i['track'])
             let div = document.createElement('div')
             let img = document.createElement('img')
             let title = document.createElement('span')
             img.src = item.img; img.style.height = '40px'; img.style.width = '40px'
-            title.innerText = `${item.name} - ${item.artists.reduce((Artists, item) => { return item.name + ',' + Artists }, '').remove(0, -1)}`
+            title.innerText = `${item.name} - ${item.artists.reduce((Artists, item) => { return item.name + ',' + Artists }, '').slice(0, -1)}`
             div.appendChild(img); div.appendChild(title)
             document.getElementById('history').appendChild(div)
         }
