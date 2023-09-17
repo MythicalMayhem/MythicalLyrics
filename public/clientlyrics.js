@@ -21,7 +21,7 @@ const img = document.querySelector('#albumArt');
 if (img.complete) {
     console.log(colorThief.getPalette(img, 10));
 } else {
-    image.addEventListener('load', function () {
+    img.addEventListener('load', function () {
         console.log(colorThief.getPalette(img, 10));
     });
 }
@@ -52,21 +52,13 @@ function changeBackground(nodes, items) {
 function resize() {
     var container = document.querySelector('.container');
     var containerInner = document.querySelector('.container-inner');
-
     var containerHeight = container.offsetHeight;
     var containerScrollHeight = containerInner.scrollHeight;
-
     var scrollMarker = document.querySelector('.scroll-marker');
-
     var colorfulStuff = document.querySelectorAll('.container-inner span'); // colorful spans from text
-
-
-
     colorfulStuff.forEach(function (span) { // loop to create each marker
-
         var spanTop = span.offsetTop;
         var spanBottom = spanTop + span.offsetHeight;
-
         var markerTop = Math.ceil(spanTop * containerHeight / containerScrollHeight);
         var markerBottom = Math.ceil(spanBottom * containerHeight / containerScrollHeight);
         if (span.className === "marker") { var markerColor = 'black'; }
@@ -75,21 +67,14 @@ function resize() {
         markerElement.style.top = markerTop + "px"
         markerElement.style.height = (markerBottom - markerTop + 2) + "px"
         scrollMarker.appendChild(markerElement);
-
     })
 }
 resize()
 addEventListener("resize", (event) => { resize() });
-
-
-
-
 var kids = document.getElementById('lyricsContainer').querySelectorAll('#bar')
-
 var selected = []
 for (let i = 0; i < kids.length; i++) {
     const el = kids[i];
-
     el.addEventListener('click', (e) => {
         if (selected.length == 0) { selected = [i] }
         else if (selected.indexOf(i) != -1) {

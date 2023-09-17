@@ -15,12 +15,14 @@
         <a href="/about">About</a>
         <a href="/privacy">Privacy</a>
     </nav>
-    <div id="seachContainer">
-        <input spellcheck="false" style="font-size: 35px; padding: 10px;" name="searcher" type="text"
-            oninput="PopulateSearch()" id="searcher" placeholder="search song name/link"><br>
-    </div>
-    <div id="container">
-
+    <div id="wrapper">
+        <div id="seachContainer">
+            <input spellcheck="false" style="font-size: 35px; padding: 10px;" name="searcher" type="text"
+            oninput="searchLegit(this.value.trim())" id="searcher" placeholder="search song name/link"><br>
+        </div>
+        <div id="container">
+            
+        </div>
     </div>
     <footer>
         <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>

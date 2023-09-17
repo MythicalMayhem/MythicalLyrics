@@ -57,9 +57,10 @@ async function token(base, code) {
   })*/
 
 app.get('/', (req, res) => { res.redirect('/home') })
-app.get(/^\/search/, (req, res) => { res.render('search') })
-app.get(/^\/privacy/, (req, res) => { res.render('privacy') })
-app.get(/^\/about/, (req, res) => { res.render('about') })
+app.get(/^(\/search)/, (req, res) => { res.render('search') })
+app.get(/^(\/geniussearch)/, (req, res) => { res.render('search') })
+app.get(/^(\/privacy)/, (req, res) => { res.render('privacy') })
+app.get(/^(\/about)/, (req, res) => { res.render('about') })
 app.get('/home', (req, res) => { res.render('home') })
 app.get('/authorize', (req, res) => { res.redirect(redir(req.protocol + '://' + req.get('host'))) })
 
@@ -113,7 +114,6 @@ app.get(/^(\/geniuslyrics)/, (req, res) => {
       artist: R[0].artists,
       optimizeQuery: true,
     }
-
     getLyrics(opts).then((lyrics) => {
       if (lyrics) {
         let newlyrics = lyrics.split('\n')

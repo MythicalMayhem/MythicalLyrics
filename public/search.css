@@ -5,15 +5,15 @@ html {
 body {
 	width: 100%;
 	min-height: 100%;
-	height: fit-content;
-	min-width: 350px;
-	padding: 0;
-	margin: 3cm 0;
+	height: fit-content; 
+	padding: 0; 
+	margin: 0;
 	background-color: #212121;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 3cm;
 }
 #nav {
 	display: flex;
@@ -39,6 +39,15 @@ body {
 
 #nav a:hover {
 	color: rgb(89, 223, 89);
+}
+
+#wrapper { 
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
 }
 
 #seachContainer {
@@ -203,7 +212,7 @@ footer p {
 footer a {
 	color: unset;
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1000px) {
 	#container {
 		width: 90%;
 	}
@@ -214,8 +223,11 @@ footer a {
 	}
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 450px) {
+	#nav {
+		flex-direction: column;
+	}
 	input {
-		width: 180px !important;
+		font-size: small;
 	}
 }

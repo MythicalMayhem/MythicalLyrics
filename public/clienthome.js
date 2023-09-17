@@ -1,34 +1,29 @@
-function setCookie(name, value, days) {
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (3500000));
-        let expires = "; expires=" + date.toUTCString();
-    } else {
-        let expires = "";
-        document.cookie = name + "=" + value + expires + "; path=/";
-    }
+function setCookie(cName, cValue, expDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 }
 
-function getCookie(name) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie);
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res;
 }
 
 function deleteCookie(name) {
-    setCookie(name, "", -1);
+    setCookie(name, "", -1)
 }
-
 function Code() {
     if (!getCookie('token')) {
         console.log(getCookie('token2'))
-        const params1 = new URLSearchParams(window.location.search);
-        const token = params1.get("access_token");
+        const params1 = new URLSearchParams(window.location.search)
+        const token = params1.get("access_token")
         if (!token) { return false }
         setCookie('token', token, 10)
         return token
@@ -68,13 +63,14 @@ async function fetchProfile(token) {
 
 function PopulateProfile() {
     fetchProfile(Code()).then((res) => {
-        console.log(Code())
+        if (res?.error?.status === 401) { deleteCookie('token') ;return }
         document.querySelector('#account').querySelector('p').innerText = res['display_name']
         document.querySelector('#account').querySelector('img').src = res['images'][1]['url']
     })
 }
 function PopulateRecent() {
     getRecent(Code()).then((res) => {
+        if (res?.error?.status === 401) { deleteCookie('token') ;return }
         while (document.getElementById('history').hasChildNodes()) { document.getElementById('history').removeChild(document.getElementById('history').firstChild) }
         for (const i of res['items']) {
             let item = new trackConstruct(i['track'])
@@ -91,6 +87,8 @@ function PopulateRecent() {
 let currentPlay = undefined
 async function Runner() {//window.location = '/authorize'
     getCurrentPlaying(Code()).then((res) => {
+
+        if (res?.error?.status === 401) { deleteCookie('token') ;return }
         let track = new trackConstruct(res['item'])
         if (res['is_playing'] === true) {
             if (currentPlay?.name !== track.name) {
@@ -106,10 +104,10 @@ async function Runner() {//window.location = '/authorize'
                 while (document.getElementById('identity').hasChildNodes()) { document.getElementById('identity').firstChild.remove() }
                 div0.appendChild(img0); div1.appendChild(title0); div1.appendChild(artist0); div0.appendChild(div1)
             }
+            currentPlay = track
         }
-        currentPlay = track
         PopulateRecent()
-    }).then(() => { setTimeout(() => { Runner() }, "7000") })
+    }).then(() => { setTimeout(() => { Runner() }, "5000") })
 }
 
 
@@ -129,4 +127,4 @@ if (Code()) {
     document.querySelectorAll('#login')[1].style.display = 'block'
     document.querySelector('#identity').remove()
     document.querySelector('#history').remove()
-}
+} 
