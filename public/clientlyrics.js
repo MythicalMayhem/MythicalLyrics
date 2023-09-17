@@ -1,3 +1,31 @@
+function downloadimage() {
+    var container = document.getElementById("mainContainer");
+    html2canvas(container, {
+        allowTaint: true, useCORS: true, backgroundColor: null, imageTimeout: 15000
+    }).then(function (canvas) {
+        container.style.boxShadow = 'none'
+        var link = document.createElement("a");
+        document.body.appendChild(link);
+        link.download = "html_image.png";
+        link.href = canvas.toDataURL();
+        link.target = '_blank';
+        link.click();
+        container.style.boxShadow = '0px 0px 20px rgba(0, 0, 0, 0.747)'
+    });
+}
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+const colorThief = new ColorThief();
+const img = document.querySelector('#albumArt');
+if (img.complete) {
+    console.log(colorThief.getPalette(img, 10));
+} else {
+    image.addEventListener('load', function () {
+        console.log(colorThief.getPalette(img, 10));
+    });
+}
+
 function changeBackground(nodes, items) {
     for (let j = 0; j < nodes.length; j++) {
         if (items.indexOf(j) == -1) {

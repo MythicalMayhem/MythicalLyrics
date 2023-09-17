@@ -67,12 +67,12 @@ app.get(/^(\/response)/, (req, res) => {
   var code = req.query.code || null;
   token(req.protocol + '://' + req.get('host'), code).then(function (result) {
     console.log(result)
-    res.redirect('/home?token=' + result['access_token']+'&refresh='+result['resfresh_token'])
+    res.redirect('/home?access_token=' + result['access_token'])//+'&refresh='+result['refresh_token']
   })
 })
 
 
-app.get(/^\/spotifylyrics/, (req, res) => {
+app.get(/^(\/spotifylyrics)/, (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
@@ -96,7 +96,7 @@ app.get(/^\/spotifylyrics/, (req, res) => {
 
 })
 
-app.get(/^\/geniuslyrics/, (req, res) => {
+app.get(/^(\/geniuslyrics)/, (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))

@@ -60,6 +60,7 @@ body {
 }
 #nav #account img {
 	border-radius: 100%;
+	background-color:#1ed760 ;
 	border: 3px solid #1ed760;
 }
 #wrapper {
@@ -157,6 +158,24 @@ body {
 #introduction #para {
 	flex-grow: 1;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+}
+#para p{
+	margin: 0;
+
+}
+#searchnow {
+	align-self: flex-end;
+	justify-self: flex-end; 
+	width: fit-content;	 
+	margin-right: 30%;
+}
+#searchnow a  { 
+	color: #1ed760;
+
 }
 #introduction #images {
 	position: relative;
@@ -250,22 +269,29 @@ footer a {
 @media only screen and (max-width: 850px) {
 	html {
 		overflow: auto;
-	}
+	} 
 	#introduction {
+		
+		width: 80%;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
-		width: fit-content;
+		align-items: center; 
 	}
 	#wrapper {
+		
+		width: 80%;
 		justify-content: center;
-		align-items: center;
-		width: fit-content;
+		align-items: center; 
 		flex-direction: column;
 	}
 }
+@media only screen and (max-width: 625px) {
+	#wrapper,#introduction {
+		width: fit-content;
+	}
+}
 @media only screen and (max-width: 775px) {
-	
+
 	#nav {
 		height: fit-content; 
 		justify-content: center;

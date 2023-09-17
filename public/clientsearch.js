@@ -1,7 +1,44 @@
+function setCookie(name, value, days) {
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (3500000));
+        let expires = "; expires=" + date.toUTCString();
+    } else {
+        let expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+}
+
+function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function deleteCookie(name) {
+    setCookie(name, "", -1);
+}
+
+function Code() {
+    if (!getCookie('token')) {
+        console.log(getCookie('token2'))
+        const params1 = new URLSearchParams(window.location.search);
+        const token = params1.get("access_token");
+        if (!token) { return false }
+        setCookie('token', token, 10)
+        return token
+    }
+    return getCookie('token')
+}
 
 function mtmas(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    let  minutes = Math.floor(millis / 60000);
+    let  seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
@@ -19,9 +56,9 @@ class playlistConstruct {
     }
     async getTrackLink(token) {
         const result = await fetch(this.tracks, { method: "GET", headers: { Authorization: `Bearer ${token}` }, });
-        var r = await result.json(); r = r["items"];
-        var tlist = [];
-        for (var i = 0; i < r.length; i++) { tlist.push(new trackConstruct(r[i]["track"])); }
+        let  r = await result.json(); r = r["items"];
+        let  tlist = [];
+        for (let  i = 0; i < r.length; i++) { tlist.push(new trackConstruct(r[i]["track"])); }
         return tlist;
     }
 }
@@ -34,33 +71,27 @@ class trackConstruct {
         this.href = searchItem['external_urls']['spotify']
     }
     getArtists(t) {
-        var artists = [];
-        for (var j = 0; j < t.length; j++) {
-            var artist = { name: t[j]["name"], link: t[j]["external_urls"]["spotify"] };
+        let  artists = [];
+        for (let  j = 0; j < t.length; j++) {
+            let  artist = { name: t[j]["name"], link: t[j]["external_urls"]["spotify"] };
             artists.push(artist);
         }
         return artists
     }
-}
-function Code() {
-    const params1 = new URLSearchParams(window.location.search);
-    const code = params1.get("token");
-    return code
-}
+} 
 
 
 async function PopulateSearch() {
     const arr = await search()
+    if (!arr) {return}
     document.getElementById('container').innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
-        var artists = ''
+        let  artists = []
         for (index of arr[i].artists) {
-            artists += `<a id='artist' target="_blank" href=${index['link']}> ${index['name']},</a>`
-        }
-        artists = artists.slice(0, -5) + '</a>'
-        artists = artists.slice(0, artists.indexOf('>') + 2) + '<small>By: </small>' + artists.slice(artists.indexOf('>') + 2, artists.length)
-        var template = `
-        
+            artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`)
+        } 
+        artists = artists.join(',</a>')+'</a>' 
+        let  template = ` 
             <img id="img" src="${arr[i].img}" alt="track image" >
             <p id="duration">${mtmas(arr[i].length)}</p>
             <div id="identity">
@@ -73,17 +104,17 @@ async function PopulateSearch() {
                     alt="spotify icon" />
             </div>
         `
-
+ 
         const container = document.createElement("div");
         container.setAttribute("id", 'template')
         container.setAttribute("track", `${arr[i].name}`)
-        container.setAttribute("artist", `${arr[i].artists[0].name}`)
+        container.setAttribute("artist", `${arr[i].artists.reduce((Artists0, item) => { return item.name + ',' + Artists0 }, '').slice(0, -1)}`)
         container.setAttribute("art", `${arr[i].img}`)
         container.innerHTML = template
 
         container.addEventListener('click', (e) => {
             if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
-                var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
+                let  newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
                 newurl.pathname = '/spotifylyrics'
                 newurl.searchParams.set("artist", container.getAttribute('artist'))
                 newurl.searchParams.set("track", container.getAttribute('track'))
@@ -93,7 +124,7 @@ async function PopulateSearch() {
         })
         container.addEventListener('touchstart', (e) => {
             if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
-                var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
+                let  newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
                 newurl.pathname = '/spotifylyrics'
                 newurl.searchParams.set("artist", container.getAttribute('artist'))
                 newurl.searchParams.set("track", container.getAttribute('track'))
@@ -106,39 +137,41 @@ async function PopulateSearch() {
 
 }
 async function search() {
+
     const searchterm = document.getElementById('searcher').value.trim()
+    if (searchterm.length==0) {return}
     try {
         if (searchterm.startsWith('https://open.spotify.com/track/')) {
             const id = searchterm.split('track/')[1].split('?')[0]
             const result = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
                 method: "GET", headers: { Authorization: `Bearer ${Code()}` }
             })
-            var r = await result.json();
+            let  r = await result.json();
             return [new trackConstruct(r)]
         }
         else {
-            var url = "https://api.spotify.com/v1/search?";
+            let  url = "https://api.spotify.com/v1/search?";
             url += "q=" + encodeURIComponent(searchterm);
             url += '&type=track&limit=20'
             const result = await fetch(url, { method: "GET", headers: { Authorization: `Bearer ${Code()}` } })
-            var r = await result.json();
-            var queries = r['tracks']['items']
-            var returner = []
-            for (var i = 0; i < queries.length; i++) {
+            let  r = await result.json();
+            let  queries = r['tracks']['items']
+            let  returner = []
+            for (let  i = 0; i < queries.length; i++) {
                 returner.push(new trackConstruct(queries[i]))
             }
             return returner
         }
 
     } catch (error) {
-        var url = "https://api.spotify.com/v1/search?";
+        let  url = "https://api.spotify.com/v1/search?";
         url += "q=" + encodeURIComponent(searchterm);
         url += '&type=track&limit=8'
         const result = await fetch(url, { method: "GET", headers: { Authorization: `Bearer ${Code()}` } })
-        var r = await result.json();
-        var queries = r['tracks']['items']
-        var returner = []
-        for (var i = 0; i < queries.length; i++) {
+        let  r = await result.json();
+        let  queries = r['tracks']['items']
+        let  returner = []
+        for (let  i = 0; i < queries.length; i++) {
             returner.push(new trackConstruct(queries[i]))
         }
         return returner
@@ -148,15 +181,15 @@ async function search() {
 
 async function getPlaylists(token) {
     const result = await fetch("https://api.spotify.com/v1/me/playlists?&limit=50", { method: "GET", headers: { Authorization: `Bearer ${token}` } });
-    var playlists = [];
-    var res = await result.json();
+    let  playlists = [];
+    let  res = await result.json();
     res = res["items"];
-    for (var i = 0; i < res.length; i++) {
-        var pl = new playlistConstruct(res[i]);
+    for (let  i = 0; i < res.length; i++) {
+        let  pl = new playlistConstruct(res[i]);
         pl.tracks = pl.getTrackLink(token);
         playlists.push(pl);
     } return playlists
 }
-var code = Code()
-//var res = getPlaylists(code)
+let  code = Code()
+//let  res = getPlaylists(code)
 //console.log(res)
