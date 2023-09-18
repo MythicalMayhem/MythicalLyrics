@@ -122,9 +122,9 @@ async function search(searchterm) {
         url += '&type=track&limit=8'
         const result = await fetch(url, { method: "GET", headers: { Authorization: `Bearer ${Code()}` } })
         let r = await result.json();
-        let queries = r['tracks']['items']
         let returner = []
-        for (let i = 0; i < queries.length; i++) { returner.push(new trackConstruct(queries[i])) }
+        r['tracks']['items'].forEach(el => { returner.push(new trackConstruct(el)) });
+
         return returner
     }
 }
@@ -136,9 +136,7 @@ async function PopulateSearch(term) {
     document.getElementById('container').innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
         let artists = []
-        for (index of arr[i].artists) {
-            artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`)
-        }
+        for (index of arr[i].artists) {artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`)}
         artists = artists.join(',</a>') + '</a>'
         let template = ` 
             <img id="img" src="${arr[i].img}" alt="track image" >
@@ -193,6 +191,5 @@ async function searchLegit(term) {
     clearTimeout(call)
     call = setTimeout(() => { PopulateSearch(term) }, 500)
 }
-if (!Code()) {  
-window.location =  '/geniusSearch'
-}
+
+if (!Code()) { window.location = '/gsearch' }

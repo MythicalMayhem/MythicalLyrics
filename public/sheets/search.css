@@ -1,3 +1,6 @@
+* {
+	box-sizing: border-box;
+}
 html {
 	height: 100%;
 }
@@ -5,13 +8,13 @@ html {
 body {
 	width: 100%;
 	min-height: 100%;
-	height: fit-content; 
-	padding: 0; 
+	height: fit-content;
+	padding: 0;
 	margin: 0;
 	background-color: #212121;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	gap: 3cm;
 }
@@ -41,7 +44,7 @@ body {
 	color: rgb(89, 223, 89);
 }
 
-#wrapper { 
+#wrapper {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -58,9 +61,13 @@ body {
 	margin: 20px;
 	height: fit-content;
 	width: 50%;
+
+	margin-bottom: 20px;
 }
 
 #searcher {
+	font-size: 35px;
+	padding: 10px;
 	text-indent: 25px;
 	height: 1.1cm;
 	width: 100%;
@@ -87,6 +94,7 @@ body {
 }
 
 #template {
+	max-width: 300px;
 	min-width: 150px;
 	margin: 5px;
 	padding: 15px 8px 7px 8px;
@@ -198,7 +206,6 @@ footer {
 
 	box-sizing: border-box;
 	padding: 25px;
-	margin-top: auto;
 	margin-bottom: 10px;
 
 	border-radius: 5px;
@@ -217,13 +224,16 @@ footer a {
 		width: 90%;
 	}
 
-	#seachContainer {
+	#seachContainer,
+	#searcher {
 		width: 80%;
 		margin: 20px;
+		margin-bottom: 30px;
+		font-size: 20px;
 	}
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
 	#nav {
 		flex-direction: column;
 	}

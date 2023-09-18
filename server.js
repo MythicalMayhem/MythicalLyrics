@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const fetch = require("node-fetch");
-const getLyrics = require('./modules/getLyrics')
+const extractLyrics = require('./modules/utils/extractLyrics')
 const searchSong = require('./modules/searchSong')
 
 const getPixels = require("get-pixels")
@@ -17,9 +17,9 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
 function redir(base) {
-  var redirect_uri = base + "/response";
-  var scope = "user-read-recently-played user-read-currently-playing";
-  var url = "https://accounts.spotify.com/authorize";
+  let redirect_uri = base + "/response";
+  let scope = "user-read-recently-played user-read-currently-playing";
+  let url = "https://accounts.spotify.com/authorize";
   url += "?response_type=code";
   url += "&client_id=" + encodeURIComponent(client_id);
   url += "&scope=" + encodeURIComponent(scope);
@@ -56,25 +56,38 @@ async function token(base, code) {
     }
   })*/
 
+
 app.get('/', (req, res) => { res.redirect('/home') })
+
 app.get(/^(\/search)/, (req, res) => { res.render('search') })
-app.get(/^(\/geniussearch)/, (req, res) => { res.render('search') })
+app.get(/^(\/gsearch)/, (req, res) => { res.render('gsearch') })
 app.get(/^(\/privacy)/, (req, res) => { res.render('privacy') })
 app.get(/^(\/about)/, (req, res) => { res.render('about') })
 app.get('/home', (req, res) => { res.render('home') })
 app.get('/authorize', (req, res) => { res.redirect(redir(req.protocol + '://' + req.get('host'))) })
 
 app.get(/^(\/response)/, (req, res) => {
-  var code = req.query.code || null;
+  let code = req.query.code || null;
   token(req.protocol + '://' + req.get('host'), code).then(function (result) {
-    console.log(result)
     res.redirect('/home?access_token=' + result['access_token'])//+'&refresh='+result['refresh_token']
   })
 })
 
-
+app.get(/^(\/gnsearch)/, (req, res) => {
+  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  const query = decodeURI(new URL(fullUrl).searchParams.get('query'))
+  if (query) {
+    const options = {
+      apiKey: geniusApiKey,
+      title: query,
+      artist: '',
+      optimizeQuery: true,
+    }
+    searchSong(options).then((r) => { res.json(JSON.parse(JSON.stringify(r))) }).catch((e) => { res.json({ 'error': String(e) }) })
+  }
+})
 app.get(/^(\/spotifylyrics)/, (req, res) => {
-  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
   const albumart = new URL(fullUrl).searchParams.get('albumart')
@@ -87,40 +100,29 @@ app.get(/^(\/spotifylyrics)/, (req, res) => {
   }
   getLyrics(options).then((lyrics) => {
     if (lyrics) {
-
       let newlyrics = lyrics.split('\n')
       res.render('lyrics', { pagelyrics: newlyrics, title: track, author: artist, art: ('https://i.scdn.co/image/' + albumart) })
-    } else {
-      res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
-    }
+    } else { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) }
   })
 
 })
 
 app.get(/^(\/geniuslyrics)/, (req, res) => {
-  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
-  const options = {
-    apiKey: geniusApiKey,
-    title: track.toString(),
-    artist: artist.toString(),
-    optimizeQuery: true,
-  }
-  searchSong(options).then((R) => {
-    opts = {
-      apiKey: geniusApiKey,
-      title: R[0].title,
-      artist: R[0].artists,
-      optimizeQuery: true,
+  const art = decodeURI(new URL(fullUrl).searchParams.get('art'))
+  const url = decodeURI(new URL(fullUrl).searchParams.get('url'))
+  const options = url 
+  extractLyrics(options).then((lyrics) => {
+    if (lyrics) {
+      let newlyrics = lyrics.split('\n')
+      res.render('lyrics', { pagelyrics: newlyrics, title: track, author: artist, art: art })
+    } else {
+      res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
     }
-    getLyrics(opts).then((lyrics) => {
-      if (lyrics) {
-        let newlyrics = lyrics.split('\n')
-        res.render('lyrics', { pagelyrics: newlyrics, title: R[0].title, author: R[0].artists, art: R[0].albumArt })
-      } else {
-        res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
-      }
-    }).catch((e) => { res.send(String(e)) })
-  }).catch((e) => { res.send(String(e)) })
+  }).catch((e)=>{
+    console.log(e)
+    res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
+  })
 })

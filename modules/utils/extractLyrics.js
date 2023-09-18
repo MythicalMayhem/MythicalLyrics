@@ -24,6 +24,6 @@ module.exports = async function (url) {
 		if (!lyrics) return null;
 		return lyrics.trim();
 	} catch (e) {
-		throw e;
+		throw 'e';
 	}
 };

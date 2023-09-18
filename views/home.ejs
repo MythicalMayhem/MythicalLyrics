@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="./clienthome.js" defer></script>
+    <link rel="stylesheet" href="sheets/index.css">
+    <script src="scripts/home.js" defer></script>
 </head>
 
 <body>
@@ -15,6 +15,7 @@
             <a href="/">home</a>
             <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
+            <a id="log out" onclick="logout()" href="/"  >Log out </a>
         </div>
         <div id="account">
             <button id="login" onclick="window.location='/authorize'">Log in</button>
@@ -32,19 +33,19 @@
                 </div>
             </div>
             <button id="login" onclick="window.location='/authorize'">Log in</button>
-            <div id="history"> 
+            <div id="history">
             </div>
         </div>
         <div id="introduction">
             <div id="para">
                 <h1>Mythical lyrics</h1>
                 <p>Music lyrics at a glance</p>
-                <h6 id="searchnow"><a  href="/search">Try it out now!</a></h6>
+                <h6 id="searchnow"><a href="/search">Try it out now!</a></h6>
             </div>
             <div id="images">
-                <img src="svg/lyricexp1.png" alt="" srcset="">
-                <img src="svg/lyricexp2.png" alt="" srcset="">
-                <img src="svg/lyricexp3.png" alt="" srcset="">
+                <img src="src/lyricexp1.png" alt="" srcset="">
+                <img src="src/lyricexp2.png" alt="" srcset="">
+                <img src="src/lyricexp3.png" alt="" srcset="">
             </div>
         </div>
     </div>
@@ -55,22 +56,7 @@
             <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
         </p>
     </footer>
-
-    <script>
-
-        // function geniusredir() {
-        //     var trackname = document.getElementById('trackname').value.trim()
-        //     var artistname = document.getElementById('artistname').value.trim()
-        //     if (trackname.length > 0 && artistname.length > 0) {
-        //         var newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-        //         newurl.pathname = '/geniuslyrics'
-        //         newurl.searchParams.set("artist", artistname)
-        //         newurl.searchParams.set("track", trackname)
-        //         console.log(trackname, artistname)
-        //         window.location.href = newurl.toString()
-        //     }
-        // }
-    </script>
+ 
 </body>
 
 </html>

@@ -1,13 +1,13 @@
 @font-face {
 	font-family: Gotham;
 	font-weight: bold;
-	src: url("Fonts/GothamBold.ttf");
+	src: url("../Fonts/GothamBold.ttf");
 }
 
 @font-face {
 	font-family: Gotham;
 	font-weight: normal;
-	src: url("Fonts/GothamMedium.ttf");
+	src: url("../Fonts/GothamMedium.ttf");
 }
 
 html {
@@ -27,6 +27,8 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	gap: 3cm;
+	
+	width: 100%;
 }
 #body {
 	width: 100%;
@@ -35,8 +37,7 @@ body {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	flex-wrap: wrap;
-	gap: 2cm;
+	flex-wrap: wrap; 
 }
 
 #nav {
@@ -147,7 +148,6 @@ p {
 	justify-content: center;
 	align-items: center;
 	border-radius: 8px;
-	margin: 30px auto;
 	width: fit-content;
 }
 
@@ -232,6 +232,8 @@ p {
 	border: none;
 	font-weight: bolder;
 	color: white;
+	
+	margin-bottom: 30px  ;
 }
 
 footer {

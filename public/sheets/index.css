@@ -2,7 +2,7 @@ body,
 html {
 	height: 100%;
 	margin: 0;
-	padding: 0; 
+	padding: 0;
 }
 
 body {
@@ -27,11 +27,12 @@ body {
 	height: fit-content;
 	padding-top: 15px;
 	border-radius: 10px;
-	
+
 	width: 100%;
 }
 
 #nav #pages {
+	min-width: fit-content;
 	gap: 20px 1cm;
 	display: flex;
 	flex-direction: row;
@@ -49,18 +50,18 @@ body {
 }
 #nav a:hover {
 	color: rgb(89, 223, 89);
-} 
-#nav #account  {
+}
+#nav #account {
 	display: flex;
 	flex-direction: row;
-	gap: 10px; 
+	gap: 10px;
 	font-family: sans-serif;
 	color: whitesmoke;
 	font-size: 18px;
 }
 #nav #account img {
 	border-radius: 100%;
-	background-color:#1ed760 ;
+	background-color: #1ed760;
 	border: 3px solid #1ed760;
 }
 #wrapper {
@@ -100,13 +101,13 @@ body {
 	gap: 10px;
 	position: relative;
 	margin-top: 10px;
+	 
 }
-#identity::before{
-	top: -24px;
-	left: 40px;
+#identity::before {
+	top: -24px; 
 	font-weight: bold;
 	color: #d1d4d2;
-	content: 'currently playing ';
+	content: "currently playing ";
 	position: absolute;
 }
 #player #identity #name span:nth-child(1) {
@@ -121,15 +122,24 @@ body {
 	font-family: sans-serif;
 	color: whitesmoke;
 	font-size: 18px;
-} 
-#player #history {
-	display: flex; 
-	flex-direction: column; 
-	flex-wrap: nowrap;
-	gap: 5px; 
-	width: 100%;
 }
-#player #history div { 
+#player #history  {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 5px;
+	position: relative;
+	width: 100%;
+	margin-top: 10px;
+}
+#player #history::before {
+	top: -24px; 
+	font-weight: bold;
+	color: #d1d4d2;
+	content: "history";
+	position: absolute;
+}
+#player #history div,#identity {
 	display: flex;
 	background-color: #252525;
 	flex-direction: row;
@@ -138,7 +148,6 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 	gap: 3px;
-
 }
 #introduction {
 	width: fit-content;
@@ -161,21 +170,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-
 }
-#para p{
+#para p {
 	margin: 0;
-
-}
-#searchnow {
-	align-self: flex-end;
-	justify-self: flex-end; 
-	width: fit-content;	 
-	margin-right: 30%;
-}
-#searchnow a  { 
+} 
+#searchnow a {
 	color: #1ed760;
-
 }
 #introduction #images {
 	position: relative;
@@ -234,10 +234,10 @@ body {
 #player #login::before {
 	position: absolute;
 	content: "to display the player";
-	color: white; 
+	color: white;
 	font-size: medium;
 	text-overflow: clip;
-	width: 150px; 
+	width: 150px;
 	left: -50px;
 	top: 50px;
 }
@@ -266,46 +266,59 @@ footer p {
 footer a {
 	color: unset;
 }
-@media only screen and (max-width: 850px) {
-	html {
-		overflow: auto;
-	} 
-	#introduction {
-		
-		width: 80%;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center; 
-	}
-	#wrapper {
-		
-		width: 80%;
-		justify-content: center;
-		align-items: center; 
+
+@media only screen and (max-width: 500px) {
+	#nav {
 		flex-direction: column;
 	}
 }
 @media only screen and (max-width: 625px) {
-	#wrapper,#introduction {
+
+ 
+	#nav #pages {
+		flex-direction: column;
 		width: fit-content;
+		align-items: flex-start;
+		justify-self: flex-start;
 	}
+
+
 }
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 910px) {
 
 	#nav {
-		height: fit-content; 
-		justify-content: center;
-		align-items: center; 
+		height: fit-content;
+		justify-content: space-around;
+		align-items: center;
 		max-width: unset;
 		width: 90%;
 	}
 	#nav #pages { 
+		row-gap: 10px;
 		justify-self: flex-end;
 	}
 }
-
-@media only screen and (max-width: 350px) {
-	#nav,#nav #pages {
-		flex-direction: column;
+@media only screen and (max-width: 1100px) {
+	html {
+		overflow: auto;
 	}
+	#introduction {
+		width: 100%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-width: fit-content;
+	}
+	#wrapper { 
+		width: 90%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		min-width: fit-content;
+	}
+	#player {
+		justify-self: flex-start;
+		align-self: flex-start;
+	}
+ 
 }

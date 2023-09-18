@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search by spotify </title>
-    <link rel="stylesheet" href="sheets/search.css">
-    <script defer src="scripts/search.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="sheets/gsearch.css">
+    <script defer src="scripts/gsearch.js"></script>
 </head>
 
 <body>
@@ -15,15 +15,17 @@
         <a href="/about">About</a>
         <a href="/privacy">Privacy</a>
     </nav>
-    <div id="wrapper">
-        <div id="searchContainer">
-            <input spellcheck="false" name="searcher" type="text" oninput="searchLegit(this.value.trim())" id="searcher"
-                placeholder="search song name/link"><br>
-        </div>
-        <div id="container">
+    <form method="get">
+        <div id="wrapper">
+            <div id="searchContainer">
+                <input spellcheck="false" name="searcher" type="text" id="searcher"
+                    placeholder="search song name/link"><br>
+            </div>
+            <div id="container">
 
+            </div>
         </div>
-    </div>
+    </form>
     <footer>
         <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
         <p>Made Possible By
@@ -31,7 +33,6 @@
             <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
         </p>
     </footer>
-
 </body>
 
 </html>

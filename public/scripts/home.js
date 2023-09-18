@@ -1,6 +1,6 @@
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
-    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    date.setTime(date.getTime() + (50 * 1000));
     const expires = "expires=" + date.toUTCString();
     document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 }
@@ -21,7 +21,6 @@ function deleteCookie(name) {
 }
 function Code() {
     if (!getCookie('token')) {
-        console.log(getCookie('token2'))
         const params1 = new URLSearchParams(window.location.search)
         const token = params1.get("access_token")
         if (!token) { return false }
@@ -63,14 +62,14 @@ async function fetchProfile(token) {
 
 function PopulateProfile() {
     fetchProfile(Code()).then((res) => {
-        if (res?.error?.status === 401) { deleteCookie('token') ;return }
+        if (res?.error?.status === 401) { deleteCookie('token'); return }
         document.querySelector('#account').querySelector('p').innerText = res['display_name']
         document.querySelector('#account').querySelector('img').src = res['images'][1]['url']
     })
 }
 function PopulateRecent() {
     getRecent(Code()).then((res) => {
-        if (res?.error?.status === 401) { deleteCookie('token') ;return }
+        if (res?.error?.status === 401) { deleteCookie('token'); return }
         while (document.getElementById('history').hasChildNodes()) { document.getElementById('history').removeChild(document.getElementById('history').firstChild) }
         for (const i of res['items']) {
             let item = new trackConstruct(i['track'])
@@ -87,8 +86,7 @@ function PopulateRecent() {
 let currentPlay = undefined
 async function Runner() {//window.location = '/authorize'
     getCurrentPlaying(Code()).then((res) => {
-
-        if (res?.error?.status === 401) { deleteCookie('token') ;return }
+        if (res?.error?.status === 401) { deleteCookie('token'); return }
         let track = new trackConstruct(res['item'])
         if (res['is_playing'] === true) {
             if (currentPlay?.name !== track.name) {
@@ -111,8 +109,12 @@ async function Runner() {//window.location = '/authorize'
 }
 
 
+function logout(){
+    deleteCookie('token')
+    window.location= '/'
+}
 
-if (Code()) {
+ if (Code()) {
     PopulateRecent()
     PopulateProfile(Code())
     document.querySelector('#account').style.display = 'flex'
@@ -127,4 +129,5 @@ if (Code()) {
     document.querySelectorAll('#login')[1].style.display = 'block'
     document.querySelector('#identity').remove()
     document.querySelector('#history').remove()
-} 
+    if (getCookie('autoLogin') == true) { window.location = 'authorize' }
+}  
