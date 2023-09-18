@@ -101,18 +101,28 @@ body {
 	gap: 10px;
 	position: relative;
 	margin-top: 10px;
-	 
 }
 #identity::before {
-	top: -24px; 
+	top: -24px;
 	font-weight: bold;
 	color: #d1d4d2;
 	content: "currently playing ";
 	position: absolute;
 }
-#player #identity #name span:nth-child(1) {
+#player #identity #name span a,
+#history a {
+	text-decoration: none;
+	color: inherit;
+}
+#player #identity #name span a:hover,
+#history a:hover {
+	text-decoration: underline;
+	color: rgb(247, 238, 161);
+}
+#player #identity #name span:nth-child(1) a {
 	font-weight: bolder;
 }
+
 #player #identity #name {
 	display: flex;
 	flex-direction: column;
@@ -123,7 +133,7 @@ body {
 	color: whitesmoke;
 	font-size: 18px;
 }
-#player #history  {
+#player #history {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -133,13 +143,34 @@ body {
 	margin-top: 10px;
 }
 #player #history::before {
-	top: -24px; 
+	top: -24px;
 	font-weight: bold;
 	color: #d1d4d2;
 	content: "history";
 	position: absolute;
 }
-#player #history div,#identity {
+#identity::after,
+#player #history div::after {
+	content: "Get Lyrics";
+	text-decoration: underline;
+	color: #1ed760;
+	position: absolute;
+	top: 45px;
+	right: 10px;
+}
+#identity {
+	border-bottom: 25px solid #252525;
+}
+#identity::after {
+	top: 90px;
+}
+#player #history div {
+	position: relative;
+	border-bottom: 20px solid #252525;
+	gap: 10px;
+}
+#player #history div,
+#identity {
 	display: flex;
 	background-color: #252525;
 	flex-direction: row;
@@ -147,7 +178,6 @@ body {
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 3px;
 }
 #introduction {
 	width: fit-content;
@@ -173,7 +203,7 @@ body {
 }
 #para p {
 	margin: 0;
-} 
+}
 #searchnow a {
 	color: #1ed760;
 }
@@ -273,19 +303,14 @@ footer a {
 	}
 }
 @media only screen and (max-width: 625px) {
-
- 
 	#nav #pages {
 		flex-direction: column;
 		width: fit-content;
 		align-items: flex-start;
 		justify-self: flex-start;
 	}
-
-
 }
 @media only screen and (max-width: 910px) {
-
 	#nav {
 		height: fit-content;
 		justify-content: space-around;
@@ -293,7 +318,7 @@ footer a {
 		max-width: unset;
 		width: 90%;
 	}
-	#nav #pages { 
+	#nav #pages {
 		row-gap: 10px;
 		justify-self: flex-end;
 	}
@@ -309,7 +334,7 @@ footer a {
 		align-items: center;
 		min-width: fit-content;
 	}
-	#wrapper { 
+	#wrapper {
 		width: 90%;
 		justify-content: center;
 		align-items: center;
@@ -320,5 +345,4 @@ footer a {
 		justify-self: flex-start;
 		align-self: flex-start;
 	}
- 
 }

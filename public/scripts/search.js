@@ -136,7 +136,7 @@ async function PopulateSearch(term) {
     document.getElementById('container').innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
         let artists = []
-        for (index of arr[i].artists) {artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`)}
+        for (index of arr[i].artists) { artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`) }
         artists = artists.join(',</a>') + '</a>'
         let template = ` 
             <img id="img" src="${arr[i].img}" alt="track image" >
@@ -161,10 +161,11 @@ async function PopulateSearch(term) {
         container.addEventListener('click', (e) => {
             if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
                 let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
+                newurl.searchParams.set("fullartists", arr[i].artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
                 newurl.pathname = '/spotifylyrics'
                 newurl.searchParams.set("artist", container.getAttribute('artist'))
                 newurl.searchParams.set("track", container.getAttribute('track'))
-                newurl.searchParams.set("albumart", container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/') + 1))
+                newurl.searchParams.set("albumart", container.getAttribute('art'))
                 window.location.href = newurl.toString()
             }
         })

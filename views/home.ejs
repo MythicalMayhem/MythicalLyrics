@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="sheets/index.css">
+    <link rel="stylesheet" href="sheets/home.css">
     <script src="scripts/home.js" defer></script>
 </head>
 
@@ -15,7 +15,7 @@
             <a href="/">home</a>
             <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
-            <a id="log out" onclick="logout()" href="/"  >Log out </a>
+            <a id="logout" onclick="logout()" href="/"  >Log out </a>
         </div>
         <div id="account">
             <button id="login" onclick="window.location='/authorize'">Log in</button>
@@ -26,11 +26,7 @@
     <div id="wrapper">
         <div id="player">
             <div id="identity">
-                <img src="" alt="" height="80px" width="80px">
-                <div id="name">
-                    <span></span>
-                    <span></span>
-                </div>
+ 
             </div>
             <button id="login" onclick="window.location='/authorize'">Log in</button>
             <div id="history">

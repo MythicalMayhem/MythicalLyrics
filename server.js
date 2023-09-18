@@ -3,6 +3,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const extractLyrics = require('./modules/utils/extractLyrics')
 const searchSong = require('./modules/searchSong')
+const getLyrics = require('./modules/getLyrics')
 
 const getPixels = require("get-pixels")
 const { extractColors } = require('extract-colors')
@@ -34,7 +35,6 @@ async function token(base, code) {
   params.append("code", code);
   params.append("client_id", client_id);
   params.append("client_secret", client_secret);
-
   const result = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -58,7 +58,6 @@ async function token(base, code) {
 
 
 app.get('/', (req, res) => { res.redirect('/home') })
-
 app.get(/^(\/search)/, (req, res) => { res.render('search') })
 app.get(/^(\/gsearch)/, (req, res) => { res.render('gsearch') })
 app.get(/^(\/privacy)/, (req, res) => { res.render('privacy') })
@@ -88,10 +87,13 @@ app.get(/^(\/gnsearch)/, (req, res) => {
 })
 app.get(/^(\/spotifylyrics)/, (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
-  const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
+  let url = new URL(fullUrl)
+  let params = new URLSearchParams(url.search)
+  if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
+  const track = decodeURI(url.searchParams.get('track'))
+  const artist = decodeURI(url.searchParams.get('artist'))
   const albumart = new URL(fullUrl).searchParams.get('albumart')
-
+  const fullartists = new URL(fullUrl).searchParams.get('fullartists')
   const options = {
     apiKey: geniusApiKey,
     title: track.toString(),
@@ -101,7 +103,7 @@ app.get(/^(\/spotifylyrics)/, (req, res) => {
   getLyrics(options).then((lyrics) => {
     if (lyrics) {
       let newlyrics = lyrics.split('\n')
-      res.render('lyrics', { pagelyrics: newlyrics, title: track, author: artist, art: ('https://i.scdn.co/image/' + albumart) })
+      res.render('lyrics', { pagelyrics: newlyrics, title: track, author: fullartists, art: albumart })
     } else { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) }
   })
 
@@ -109,11 +111,14 @@ app.get(/^(\/spotifylyrics)/, (req, res) => {
 
 app.get(/^(\/geniuslyrics)/, (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  let URL = new URL(fullUrl)
+  let params = new URLSearchParams(URL.search)
+  if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
   const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
   const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
   const art = decodeURI(new URL(fullUrl).searchParams.get('art'))
   const url = decodeURI(new URL(fullUrl).searchParams.get('url'))
-  const options = url 
+  const options = url
   extractLyrics(options).then((lyrics) => {
     if (lyrics) {
       let newlyrics = lyrics.split('\n')
@@ -121,8 +126,7 @@ app.get(/^(\/geniuslyrics)/, (req, res) => {
     } else {
       res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
     }
-  }).catch((e)=>{
-    console.log(e)
+  }).catch((e) => {
     res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
   })
 })
