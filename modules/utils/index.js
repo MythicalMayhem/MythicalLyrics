@@ -4,14 +4,14 @@ const checkOptions = (options) => {
 		throw '"apiKey" property is missing from options';
 	} else if (!title) {
 		throw '"title" property is missing from options';
-	} 
+	}
 };
 const getTitle = (title, artist) => {
-	let b = `${title} ${artist}`
+	let b = `${artist} ${title}`
 		.toLowerCase()
-		.replace(/\([^)]*\)/g, '')
+
+		.replace(/[ ](ft|feat)\.?[ ].*/g, '').replace(/\([^)]*\)/g, '')
 		.replace(/ *\[[^\]]*]/g, '')
-		.replace(/[ ](ft|feat)\.?[ ].*/g, '')
 		.replace(/\s+/g, ' ')
 		.trim()
 	console.log(b)

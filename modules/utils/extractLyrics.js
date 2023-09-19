@@ -6,6 +6,7 @@ const cheerio = require('cheerio-without-node-native');
  */
 module.exports = async function (url) {
 	try {
+		console.log(url)
 		let { data } = await axios.get(url);
 		const $ = cheerio.load(data);
 		let lyrics = $('div[class="lyrics"]').text().trim();

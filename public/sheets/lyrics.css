@@ -1,5 +1,9 @@
 *{
 	box-sizing: border-box;	
+	font-family: sans-serif;
+}
+[content-editable]{
+	outline: none;
 }
 @font-face {
 	font-family: Gotham;
@@ -17,24 +21,20 @@
 	--bgc :#303030
 	--wrapper : #4e4e50
 }
-
-html {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
+html,body {
+	height: 100%;
+} 
 
 body {
 	display: flex;
 	flex-direction: column;
-	background-color: #303030;
-	height: fit-content;
+	background-color: #303030; 
 	margin: 0;
 	min-width: 300px;
 	justify-content: space-between;
 	align-items: center;
-	gap: 3cm;
+	gap: 1cm;
+	
 		width: 100%;
 	min-width: 320px;
 }
@@ -73,20 +73,20 @@ body {
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
 	text-decoration: none;
-	font-family: sans-serif;
 }
 
 #nav a:hover {
 	color: #950740;
 }
 
+
 .container {
 	background-color: #950740;
 	position: relative;
-	height: 80%;
+	height: 100%;
 	max-height: 500px;
-	min-width: 300px;
-	width: 500px;
+	max-width: 50%;
+	min-width: 300px; 
 	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.65);
 	display: flex;
 	flex-wrap: nowrap;
@@ -102,7 +102,10 @@ body {
 	overflow-x: hidden;
 	align-self: flex-end;
 }
-
+.container-inner p::before{
+	content: '•';
+	opacity: 0.25;
+}
 p {
 	color: white;
 	margin: 12px 0;
@@ -212,12 +215,12 @@ p {
 	text-overflow: ellipsis;
 	font-family: Gotham;
 	font-weight: bold;
-	font-size: 1.4em;
+	font-size: 1.2em;
 }
 
 #name p:nth-child(2) {
 	font-family: sans-serif;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 #bar {
@@ -253,12 +256,11 @@ footer {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	gap: 20px;
+	gap: 10px;
 	width: fit-content;
 	max-width: 700px; 
 	box-sizing: border-box; 
-	padding: 17px;
-	margin-bottom: 10px; 
+	padding: 14px; 
 	background-color: none; 
 
 	text-align: center;
@@ -275,7 +277,7 @@ a {
 a:hover{
 	color: crimson;
 }
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1050px) {
 	body {
 		height: fit-content;
 		display: flex;
@@ -284,9 +286,9 @@ a:hover{
 		align-items: center;
 	}
 
-	#lyricsContainer {
-		height: 25em;
+	#lyricsContainer { 
 		width: 75%;
+		max-width: unset;
 	}
 
 	p {
@@ -294,10 +296,12 @@ a:hover{
 	}
 }
 
- 
-@media (max-width:450px) {
+@media (max-width: 500px) {
 	#nav {
 		flex-direction: column;
 		align-self: flex-start;
+	}
+	#lyricsContainer {
+		width: 90%;
 	}
 }

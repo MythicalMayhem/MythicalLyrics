@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="sheets/home.css">
+    <link rel="icon" type="image/x-icon" href="/src/favicon.png">
     <script src="scripts/home.js" defer></script>
 </head>
 
@@ -15,7 +16,7 @@
             <a href="/">home</a>
             <a href="/about">About</a>
             <a href="/privacy">Privacy</a>
-            <a id="logout" onclick="logout()" href="/"  >Log out </a>
+            <a id="logout" onclick="logout()" href="/">Log out </a>
         </div>
         <div id="account">
             <button id="login" onclick="window.location='/authorize'">Log in</button>
@@ -26,24 +27,28 @@
     <div id="wrapper">
         <div id="player">
             <div id="identity">
- 
+
             </div>
             <button id="login" onclick="window.location='/authorize'">Log in</button>
             <div id="history">
             </div>
         </div>
-        <div id="introduction">
-            <div id="para">
-                <h1>Mythical lyrics</h1>
-                <p>Music lyrics at a glance</p>
-                <h6 id="searchnow"><a href="/search">Go To Search</a></h6>
+        <div id="introduction"> 
+
+                <div id="para">
+                    <h1>Mythical lyrics</h1>
+                    <p>Music lyrics at a glance</p>
+                    <button onclick="window.location='/search'" id="searchnow">Go To Search</button>
+                    
+                    <img src="/src/favicon.png"   alt="">
+                </div>
+                <div id="images">
+                    <img src="src/lyricexp1.png" alt="" srcset="">
+                    <img src="src/lyricexp2.png" alt="" srcset="">
+                    <img src="src/lyricexp3.png" alt="" srcset="">
+                </div>
             </div>
-            <div id="images">
-                <img src="src/lyricexp1.png" alt="" srcset="">
-                <img src="src/lyricexp2.png" alt="" srcset="">
-                <img src="src/lyricexp3.png" alt="" srcset="">
-            </div>
-        </div>
+ 
     </div>
     <footer>
         <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
@@ -52,7 +57,7 @@
             <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
         </p>
     </footer>
- 
+
 </body>
 
 </html>

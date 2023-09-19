@@ -1,5 +1,5 @@
 * {
-	box-sizing: border-box; 
+	box-sizing: border-box;
 	font-family: sans-serif;
 }
 
@@ -23,9 +23,6 @@ body {
 }
 
 #nav {
-	display: block;
-	height: 50px;
-	width: fit-content;
 	text-align: center;
 	display: flex;
 	flex-direction: row;
@@ -42,7 +39,7 @@ body {
 
 #nav a {
 	padding: 0 10px;
-	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
 	color: whitesmoke;
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
@@ -73,19 +70,19 @@ fieldset {
 	border: none;
 	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
 	box-sizing: border-box;
-	width: 90%;  	padding: 20px;
+	width: 90%;
+	padding: 20px;
 }
-fieldset legend  {
+fieldset legend {
 	font-size: 30px;
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
 
 fieldset p {
 	font-size: 15px;
 	font-weight: lighter;
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-		"Lucida Sans Unicode", Geneva, Verdana, sans-serif; 
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 fieldset ul {
@@ -97,7 +94,7 @@ fieldset ul li {
 	padding: 0;
 }
 
-footer { 
+footer {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -105,27 +102,26 @@ footer {
 	justify-content: space-evenly;
 	gap: 20px;
 	width: fit-content;
-	max-width: 700px; 
-	box-sizing: border-box; 
+	max-width: 700px;
+	box-sizing: border-box;
 	padding: 17px;
-	margin-bottom: 10px; 
-	background-color: none; 
+	margin-bottom: 10px;
+	background-color: none;
 
 	text-align: center;
 	align-self: flex-end;
 }
 footer p {
 	margin: unset;
-	
-} 
+}
 a {
-	color: #c3073f; 
+	color: #c3073f;
 	font-weight: bold;
 }
-a:hover{
+a:hover {
 	color: crimson;
 }
-@media (max-width:450px) {
+@media (max-width: 450px) {
 	#nav {
 		flex-direction: column;
 		align-self: flex-start;

@@ -81,21 +81,24 @@ function PopulateRecent() {
             img.src = item.img; img.style.height = '40px'; img.style.width = '40px'
             title.innerHTML = `<a target='_blank' href=${item.href}>${item.name}</a> - ${item.artists.reduce((Artists, el) => { return Artists + `<a target='_blank'  href="${el.link}">` + el.name + `</a>` + ', ' }, '').slice(0, -2)}`
             div.appendChild(img); div.appendChild(title)
+            div.id = 'clicker'
             let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
             newurl.pathname = '/spotifylyrics'
             newurl.searchParams.set("artist", item.artists[0].name)
             newurl.searchParams.set("track", item.name)
             newurl.searchParams.set("albumart", item.img)
             newurl.searchParams.set("fullartists", item.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
-            div.addEventListener('click', () => {
-                window.location.href = newurl.toString()
+            div.addEventListener('click', (e) => {
+                if (e.target.id = 'clicker') {
+                    window.location.href = newurl.toString()
+                }
             })
             document.getElementById('history').appendChild(div)
         }
     })
 }
 let currentPlay = undefined
-async function Runner() {//window.location = '/authorize'
+async function Runner() {
     getCurrentPlaying(Code()).then((res) => {
         if (res?.error?.status === 401) { deleteCookie('token'); return }
         let track = new trackConstruct(res['item'])
@@ -115,9 +118,7 @@ async function Runner() {//window.location = '/authorize'
             newurl.searchParams.set("track", track.name)
             newurl.searchParams.set("albumart", track.img)
             newurl.searchParams.set("fullartists", track.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
-            div0.addEventListener('click', () => {
-                window.location.href = newurl.toString()
-            })
+            div0.setAttribute('redir', newurl.toString())
             while (div0.hasChildNodes()) { div0.firstChild.remove() }
             div0.appendChild(img0); div1.appendChild(title0); div1.appendChild(artist0); div0.appendChild(div1)
         }
@@ -141,6 +142,11 @@ if (Code()) {
     document.querySelectorAll('#login')[1].style.display = 'none'
     document.querySelector('#logout').style.display = 'unset'
     Runner()
+    document.getElementById('identity').addEventListener('click', (e) => {
+        if (e.target.id==='identity') {
+            window.location.href = document.getElementById('identity').getAttribute('redir')
+        }
+    })
 
 } else {
     document.querySelector('#account').querySelector('p').style.display = 'none'

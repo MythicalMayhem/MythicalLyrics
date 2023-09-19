@@ -7,6 +7,7 @@
     <title>
         <%=' '+title%> - <%=' '+author%>
     </title>
+    <link rel="icon" type="image/x-icon" href="/src/favicon.png">
     <link rel="stylesheet" href="sheets/lyrics.css">
     <script defer src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
@@ -49,19 +50,18 @@
                             <div id="identity">
                                 <img id="albumArt" src="<%=art%>" crossorigin="anonymous" alt="">
                                 <div id="name">
-                                    <p>
+                                    <p spellcheck="false" contenteditable="true">
                                         <%=title%>
                                     </p>
-                                    <p>
+                                    <p spellcheck="false" contenteditable="true">
                                         <%=author%>
                                     </p>
                                 </div>
                             </div>
                             <div id="barz">
                                 <br>
-                                <h3 contenteditable="true" id="bar">choose or type lyrics</h3>
+                                <h3 spellcheck="false" contenteditable="true" id="bar">choose or type lyrics</h3>
                                 <br>
-
                             </div>
                             <div id="other">
                                 <img id="spotify_logo" style="height: 32px;" src="src/Spotify_Logo_RGB_White.png"
