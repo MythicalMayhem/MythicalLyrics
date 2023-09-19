@@ -1,3 +1,10 @@
+* {
+	box-sizing: border-box;
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar {
+	width: 0;
+}
 body,
 html {
 	height: 100%;
@@ -8,7 +15,7 @@ html {
 body {
 	min-height: 100%;
 	height: fit-content;
-	background-color: #121212;
+	background-color: #303030;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -17,6 +24,7 @@ body {
 }
 
 #nav {
+	text-align: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -49,7 +57,7 @@ body {
 	text-decoration: none;
 }
 #nav a:hover {
-	color: rgb(89, 223, 89);
+	color: #950740;
 }
 #nav #account {
 	display: flex;
@@ -57,12 +65,17 @@ body {
 	gap: 10px;
 	font-family: sans-serif;
 	color: whitesmoke;
-	font-size: 18px;
+	font-size: 25px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 #nav #account img {
 	border-radius: 100%;
-	background-color: #1ed760;
-	border: 3px solid #1ed760;
+	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
+	background-color: #c3073f;
+	border: 3px solid #c3073f;
 }
 #wrapper {
 	width: 90%;
@@ -84,7 +97,7 @@ body {
 	width: 100%;
 	max-width: 350px;
 	max-height: fit-content;
-	background-color: #191919;
+	background-color: #4e4e50;
 	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
 	display: flex;
 	flex-direction: column;
@@ -105,7 +118,7 @@ body {
 #identity::before {
 	top: -24px;
 	font-weight: bold;
-	color: #d1d4d2;
+	color: crimson;
 	content: "currently playing ";
 	position: absolute;
 }
@@ -117,7 +130,7 @@ body {
 #player #identity #name span a:hover,
 #history a:hover {
 	text-decoration: underline;
-	color: rgb(247, 238, 161);
+	color: #950740;
 }
 #player #identity #name span:nth-child(1) a {
 	font-weight: bolder;
@@ -144,48 +157,63 @@ body {
 }
 #player #history::before {
 	top: -24px;
+	display: block;
 	font-weight: bold;
-	color: #d1d4d2;
+	color: crimson;
 	content: "history";
 	position: absolute;
 }
 #identity::after,
 #player #history div::after {
+	font-weight: bold;
 	content: "Get Lyrics";
 	text-decoration: underline;
-	color: #1ed760;
+	color: #c3073f;
 	position: absolute;
 	top: 45px;
 	right: 10px;
 }
 #identity {
-	border-bottom: 25px solid #252525;
+	border-bottom: 30px solid #4e4e50;
 }
 #identity::after {
+	font-weight: bold;
 	top: 90px;
 }
 #player #history div {
 	position: relative;
-	border-bottom: 20px solid #252525;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	border-bottom: 20px solid #4e4e50;
 	gap: 10px;
 }
 #player #history div,
 #identity {
 	display: flex;
-	background-color: #252525;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	background-color: #4e4e50;
 	flex-direction: row;
 	padding: 3px;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
 }
+#identity {
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+		rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 #introduction {
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+		0px 18px 23px rgba(0, 0, 0, 0.1);
 	width: fit-content;
 	box-sizing: border-box;
 	padding: 20px;
 	flex-grow: 0.5;
 	font-size: 1.5em;
-	background-color: #191919;
+	background-color: #4e4e50;
 	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
 	display: flex;
 	flex-direction: row;
@@ -205,7 +233,12 @@ body {
 	margin: 0;
 }
 #searchnow a {
-	color: #1ed760;
+	background-color: #c3073f;
+	text-shadow: none;
+	color: rgb(218, 218, 218);
+	padding: 10px 20px;
+	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
+	text-decoration: none;
 }
 #introduction #images {
 	position: relative;
@@ -249,7 +282,7 @@ body {
 	padding: 5px;
 	border: none;
 	font-size: larger;
-	background-color: #1ed760;
+	background-color: #c3073f;
 	align-self: flex-start;
 	display: none;
 }
@@ -283,7 +316,7 @@ footer {
 	padding: 17px;
 	margin: 10px;
 	border-radius: 5px;
-	background-color: #191919c7;
+	background-color: #4e4e50c7;
 }
 footer p {
 	text-overflow: ellipsis;
@@ -309,6 +342,9 @@ footer a {
 		align-items: flex-start;
 		justify-self: flex-start;
 	}
+	#introduction {
+		width: 100%;
+	}
 }
 @media only screen and (max-width: 910px) {
 	#nav {
@@ -328,7 +364,7 @@ footer a {
 		overflow: auto;
 	}
 	#introduction {
-		width: 100%;
+		width: 80%;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -337,12 +373,13 @@ footer a {
 	#wrapper {
 		width: 90%;
 		justify-content: center;
-		align-items: center;
+		align-items: center; 
 		flex-direction: column;
 		min-width: fit-content;
 	}
 	#player {
 		justify-self: flex-start;
-		align-self: flex-start;
+		align-self: flex-start; 
 	}
+	
 }

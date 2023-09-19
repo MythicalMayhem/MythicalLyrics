@@ -1,10 +1,18 @@
+* {
+	box-sizing: border-box; 
+	font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+}
 html,
 body {
 	margin: 0;
 	height: 100%;
 }
 body {
-	background-color: #121212;
+	background-color: #303030;
 	color: white;
 	display: flex;
 	flex-direction: column;
@@ -18,13 +26,13 @@ body {
 	display: block;
 	height: 50px;
 	width: fit-content;
-
+	text-align: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 10px;
+	gap: 20px 50px;
 	width: fit-content;
 	height: fit-content;
 
@@ -34,7 +42,7 @@ body {
 
 #nav a {
 	padding: 0 10px;
-	font-family: sans-serif;
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
 	color: whitesmoke;
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
@@ -42,13 +50,13 @@ body {
 }
 
 #nav a:hover {
-	color: rgb(89, 223, 89);
+	color: #950740;
 }
 
 #main {
 	max-width: 850px;
 	margin: 0 10px;
-	font-family: sans-serif;
+
 	font-size: smaller;
 	display: flex;
 	flex-direction: column;
@@ -56,34 +64,28 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 1cm;
-	background-color: #181818;
+	background-color: #4e4e50;
 	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.781);
 	padding: 1cm 0;
 }
 
 fieldset {
+	border: none;
+	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
 	box-sizing: border-box;
-	width: 90%;
-	border-top: none;
-	border-right: none;
-	border-radius: 20px;
-	padding: 20px;
+	width: 90%;  	padding: 20px;
 }
-fieldset legend {
+fieldset legend  {
 	font-size: 30px;
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-fieldset a {
-	color: #1fb855;
-	font-weight: bolder;
-}
+
+
 fieldset p {
 	font-size: 15px;
 	font-weight: lighter;
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-	letter-spacing: 0.05px;
-	word-spacing: 0.001px;
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif; 
 }
 
 fieldset ul {
@@ -94,7 +96,8 @@ fieldset ul li {
 	margin: 15px;
 	padding: 0;
 }
-footer {
+
+footer { 
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -102,20 +105,29 @@ footer {
 	justify-content: space-evenly;
 	gap: 20px;
 	width: fit-content;
-	max-width: 700px;
-
-	box-sizing: border-box;
+	max-width: 700px; 
+	box-sizing: border-box; 
 	padding: 17px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	background-color: none;
-	color: whitesmoke;
-	font-family: sans-serif;
+	margin-bottom: 10px; 
+	background-color: none; 
+
 	text-align: center;
+	align-self: flex-end;
 }
 footer p {
 	margin: unset;
+	
+} 
+a {
+	color: #c3073f; 
+	font-weight: bold;
 }
-footer a {
-	color: unset;
+a:hover{
+	color: crimson;
+}
+@media (max-width:450px) {
+	#nav {
+		flex-direction: column;
+		align-self: flex-start;
+	}
 }

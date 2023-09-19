@@ -29,7 +29,7 @@ if (img.complete) {
 function changeBackground(nodes, items) {
     for (let j = 0; j < nodes.length; j++) {
         if (items.indexOf(j) == -1) {
-            nodes[j].style.backgroundColor = '#179b45ff'
+            nodes[j].style.backgroundColor = '#950740'
             nodes[j].style.color = 'black'
             nodes[j].style.borderInline = 'none'
         } else {
@@ -40,12 +40,12 @@ function changeBackground(nodes, items) {
     }
     if (selected.length >= 5) { return }
     if (items[0] > 0) {
-        nodes[items[0] - 1].style.backgroundColor = 'lightgray'
-        nodes[items[0] - 1].style.borderInline = '5px solid lightgray'
+        nodes[items[0] - 1].style.backgroundColor = '#e3b2c5'
+        nodes[items[0] - 1].style.borderInline = '5px solid #e3b2c5'
     }
     if (items[items.length - 1] < nodes.length - 1) {
-        nodes[items[items.length - 1] + 1].style.backgroundColor = 'lightgray'
-        nodes[items[items.length - 1] + 1].style.borderInline = '5px solid lightgray'
+        nodes[items[items.length - 1] + 1].style.backgroundColor = '#e3b2c5'
+        nodes[items[items.length - 1] + 1].style.borderInline = '5px solid #e3b2c5'
     }
 }
 

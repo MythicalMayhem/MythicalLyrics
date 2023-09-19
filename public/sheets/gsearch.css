@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: sans-serif;
 } 
 html {
 	height: 100%;
@@ -11,7 +12,7 @@ body {
 	height: fit-content;
 	padding: 0;
 	margin: 0;
-	background-color: #212121;
+	background-color: #303030;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -19,21 +20,27 @@ body {
 	gap: 3cm;
 }
 #nav {
+	display: block;
+	height: 50px;
+	width: fit-content;
+	text-align: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
-	column-gap: 2cm;
-	row-gap: 20px;
+	gap: 20px 50px;
 	width: fit-content;
 	height: fit-content;
+
 	padding: 15px;
 	border-radius: 10px;
 }
+
 #nav a {
 	padding: 0 10px;
-	font-family: sans-serif;
+
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
 	color: whitesmoke;
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
@@ -41,8 +48,7 @@ body {
 }
 
 #nav a:hover {
-	color: rgb(89, 223, 89);
-	width: fit-content;
+	color: #950740;
 }
 form {
 	width: 80%;
@@ -112,31 +118,39 @@ form {
 	flex-wrap: nowrap;
 	gap: 5px;
 }
-footer {
+footer { 
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: center;
-	gap: 10px;
+	justify-content: space-evenly;
+	gap: 20px;
 	width: fit-content;
-	max-width: 700px;
-	min-width: 250px;
+	max-width: 700px; 
+	box-sizing: border-box; 
+	padding: 17px;
+	margin-bottom: 10px; 
+	background-color: none; 
 
-	box-sizing: border-box;
-	padding: 25px;
-	margin-bottom: 10px;
-
-	border-radius: 5px;
-	background-color: #191919c7;
-	color: whitesmoke;
-	font-family: sans-serif;
+	text-align: center;
+	align-self: flex-end;
 }
 footer p {
 	margin: unset;
+	
+} 
+a {
+	color: #c3073f; 
+	font-weight: bold;
 }
-footer a {
-	color: unset;
+a:hover{
+	color: crimson;
+}
+@media (max-width:450px) {
+	#nav {
+		flex-direction: column;
+		align-self: flex-start;
+	}
 }
 @media screen and (max-width: 500px) {
 	#nav {
