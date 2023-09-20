@@ -26,7 +26,7 @@ Though the app is yet to be accepted by spotify
 ## Local development and testing
 
 ```bash
-git clone https://github.com/MythicalMayhem/MythicalLyrics && cd consumet.org
+git clone https://github.com/MythicalMayhem/MythicalLyrics && cd MythicalLyrics
 ```
 
 ### 2. Install dependencies
