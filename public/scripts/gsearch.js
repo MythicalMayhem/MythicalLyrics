@@ -3,17 +3,27 @@ var form = document.querySelector("form");
 form.addEventListener('submit', handleForm);
 let lastTerm = ''
 let allowed = true
+
 async function handleForm(e) {
     e.preventDefault()
     let term = document.querySelector('#searcher').value.trim()
     if (!(term && term.length > 1 && term !== lastTerm && allowed)) { return }
     allowed = false
     lastTerm = term
-    setTimeout(() => { allowed = true }, 5000);
-    await fetch(`http://127.0.0.1:5500/gnsearch?query=${term}`)
+    setTimeout(() => { allowed = true }, 2250);
+    await fetch(`/gnsearch?query=${term}`)
         .then((res) => { return res.json() })
-        .then(populateSearch)
-
+        .then((res) => {
+            if (res.ok === true && res?.data.length > 0) { return populateSearch(res['data']) }
+            else {
+                let parent = document.getElementById('container')
+                while (parent.hasChildNodes()) { parent.removeChild(parent.firstChild) }
+                let h1 = document.createElement('h1')
+                h1.innerText = 'No results'
+                h1.style.color = 'white'
+                parent.appendChild(h1)
+            }
+        })
 }
 function populateSearch(res) {
     let parent = document.getElementById('container')
@@ -32,7 +42,6 @@ function populateSearch(res) {
         newurl.searchParams.set("track", el.title)
         newurl.searchParams.set("art", el.albumArt)
         newurl.searchParams.set("url", el.url)
-
         img.style.height = '75px'
         img.style.width = '75px'
         img.src = el.albumArt
@@ -47,6 +56,5 @@ function populateSearch(res) {
             window.location = (wrapper.getAttribute('redir'))
         })
         parent.appendChild(wrapper)
-
     });
 }

@@ -82,7 +82,14 @@ app.get(/^(\/gnsearch)/, (req, res) => {
       artist: '',
       optimizeQuery: true,
     }
-    searchSong(options).then((r) => { res.json(JSON.parse(JSON.stringify(r))) }).catch((e) => { res.json({ 'error': String(e) }) })
+    searchSong(options).then((r) => {
+      return res.status(200).json({
+        ok: true,
+        data: r
+      });
+
+    })
+      .catch((e) => { res.status(501)({ 'error': String(e) }) })
   }
 })
 app.get(/^(\/spotifylyrics)/, (req, res) => {
@@ -111,14 +118,13 @@ app.get(/^(\/spotifylyrics)/, (req, res) => {
 
 app.get(/^(\/geniuslyrics)/, (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  let URL = new URL(fullUrl)
-  let params = new URLSearchParams(URL.search)
+  let url0 = new URL(fullUrl)
+  let params = new URLSearchParams(url0.search)
   if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
-  const track = decodeURI(new URL(fullUrl).searchParams.get('track'))
-  const artist = decodeURI(new URL(fullUrl).searchParams.get('artist'))
-  const art = decodeURI(new URL(fullUrl).searchParams.get('art'))
-  const url = decodeURI(new URL(fullUrl).searchParams.get('url'))
-  const options = url
+  const track = decodeURI(url0.searchParams.get('track'))
+  const artist = decodeURI(url0.searchParams.get('artist'))
+  const art = decodeURI(url0.searchParams.get('art'))
+  const options = decodeURI(url0.searchParams.get('url'))
   extractLyrics(options).then((lyrics) => {
     if (lyrics) {
       let newlyrics = lyrics.split('\n')

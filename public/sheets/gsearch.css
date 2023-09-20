@@ -1,3 +1,6 @@
+::-webkit-scrollbar {
+	width: 0;
+}
 * {
 	box-sizing: border-box;
 	font-family: sans-serif;
@@ -63,7 +66,7 @@ form {
 	padding: 10px;
 	text-indent: 25px;
 	height: 1.1cm;
-	background-color: #212121;
+	background-color: #303030;
 	border: none;
 	outline: none;
 	color: white;
@@ -83,19 +86,24 @@ form {
 	align-items: stretch;
 	justify-content: flex-start;
 	gap: 25px; 
+	min-width: 60%;
+	width: fit-content;
 	margin-top: 25px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 #container #template {
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;  
 	gap: 15px;
-	margin-left: 10%;
+	margin-left: 3%;
 	padding: 5px;
 	max-width: 450px; 
-	background: #303030; 
+	background: gray; 
 	text-overflow: ellipsis;
 }
 #container #template #identity span {

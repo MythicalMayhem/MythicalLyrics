@@ -242,6 +242,7 @@ body {
 	flex-grow: 1;
 }
 #searchnow {
+	cursor: pointer;
 	border: none;
 	font-size: 1em;
 	margin-top: 25px;

@@ -1,7 +1,9 @@
 * {
 	box-sizing: border-box;
+	font-family: sans-serif;
+	color: whitesmoke;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
 	width: 0;
 }
 html {
@@ -14,7 +16,7 @@ body {
 	height: fit-content;
 	padding: 0;
 	margin: 0;
-	background-color: #212121;
+	background-color: #303030;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -22,21 +24,23 @@ body {
 	gap: 3cm;
 }
 #nav {
+	text-align: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
-	column-gap: 2cm;
-	row-gap: 20px;
+	gap: 20px 50px;
 	width: fit-content;
 	height: fit-content;
+
 	padding: 15px;
 	border-radius: 10px;
 }
+
 #nav a {
 	padding: 0 10px;
-	font-family: sans-serif;
+	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
 	color: whitesmoke;
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
@@ -44,9 +48,8 @@ body {
 }
 
 #nav a:hover {
-	color: rgb(89, 223, 89);
+	color: #950740;
 }
-
 #wrapper {
 	width: 100%;
 	display: flex;
@@ -73,7 +76,7 @@ body {
 	text-indent: 25px;
 	height: 1.1cm;
 	width: 100%;
-	background-color: #212121;
+	background-color: #303030;
 	border: none;
 	outline: none;
 	color: white;
@@ -82,11 +85,11 @@ body {
 
 #container {
 	box-sizing: border-box;
-	background-color: #1a1a1a;
+	background-color: #4e4e50;
 	width: 70%;
 	padding: 0.5cm;
 	border-radius: 0.6cm;
-	box-shadow: 0px 0px 10px 1px rgba(128, 128, 128, 0.2);
+	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
 	display: flex;
 	height: fit-content;
 	flex-wrap: wrap;
@@ -105,16 +108,21 @@ body {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	background-color: #121212;
+	background-color: #373737;
 	border-radius: 5px;
 	overflow: hidden;
 	z-index: 3;
 	flex: 1 1 20%;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+	transition-duration: 0.1s;
 }
 
 #template:hover {
+	z-index: 10;
 	transform: scale(1.1);
-	transition-duration: 0.1s;
 }
 
 #other {
@@ -159,7 +167,6 @@ body {
 	overflow-wrap: break-word;
 	color: white;
 	text-align: center;
-	margin: 1px 5px;
 	font-family: sans-serif;
 	text-decoration: none;
 	max-width: 100%;
@@ -169,7 +176,7 @@ body {
 
 #template #identity a:hover {
 	text-decoration: underline;
-	color: rgb(247, 238, 161);
+	color: #950740;
 }
 
 #title {
@@ -180,11 +187,14 @@ body {
 
 #template #identity div {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 }
-
+#identity div a {
+	font-weight: lighter;
+}
 #submitter {
 	background: none;
 	font-size: 1.7em;
@@ -200,26 +210,26 @@ footer {
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: center;
-	gap: 10px;
+	justify-content: space-evenly;
+	gap: 20px;
 	width: fit-content;
 	max-width: 700px;
-	min-width: 250px;
-
 	box-sizing: border-box;
-	padding: 25px;
+	padding: 17px;
 	margin-bottom: 10px;
-
-	border-radius: 5px;
-	background-color: #191919c7;
-	color: whitesmoke;
-	font-family: sans-serif;
+	background-color: none;
+	text-align: center;
+	align-self: flex-end;
 }
 footer p {
 	margin: unset;
 }
-footer a {
-	color: unset;
+a {
+	color: #c3073f;
+	font-weight: bold;
+}
+a:hover {
+	color: crimson;
 }
 @media only screen and (max-width: 1000px) {
 	#container {
@@ -229,7 +239,7 @@ footer a {
 	#searchContainer,
 	#searcher {
 		width: 90%;
-		margin: 20px; 
+		margin: 20px;
 		font-size: 20px;
 	}
 }
@@ -237,6 +247,8 @@ footer a {
 @media screen and (max-width: 500px) {
 	#nav {
 		flex-direction: column;
+
+		align-self: flex-start;
 	}
 	input {
 		font-size: small;
