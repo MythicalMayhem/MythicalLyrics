@@ -1,6 +1,6 @@
 <div align='center'>
 <h1>Mythical Lyrics</h1>
-<img  src='https://github.com/MythicalMayhem/MythicalLyrics/assets/72671232/240f6da3-cc90-4e8f-904b-39cbd7daae77' height='350px' width='395px'>
+<img  src='https://github.com/MythicalMayhem/MythicalLyrics/assets/72671232/240f6da3-cc90-4e8f-904b-39cbd7daae77' width='395px'>
  <h3>Music lyrics at a glance</h3>
  <div align='center'>
  <img src='https://img.shields.io/github/stars/MythicalMayhem/MythicalLyrics'>
