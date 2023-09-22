@@ -34,8 +34,12 @@ git clone https://github.com/MythicalMayhem/MythicalLyrics && cd MythicalLyrics
 ```bash
 npm install
 ```
+![image](https://github.com/MythicalMayhem/MythicalLyrics/assets/72671232/501826d8-a65c-4ae1-bd80-758e34c0a577)
 
-### 3. Start development server
+### 3. Create .env file 
+![image](https://github.com/MythicalMayhem/MythicalLyrics/assets/72671232/c6e8b23e-57d2-48c1-85e2-9cc6827c48e0)
+
+### 4. Start development server
 
 ```bash
 npm run start
