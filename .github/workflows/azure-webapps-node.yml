@@ -43,7 +43,7 @@ jobs:
         cache: 'npm'
 
     - name: npm install, build, and test
-      run: |
+      run: 
         npm install
  
 
