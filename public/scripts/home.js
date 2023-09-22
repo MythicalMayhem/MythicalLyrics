@@ -89,7 +89,7 @@ function PopulateRecent() {
             newurl.searchParams.set("albumart", item.img)
             newurl.searchParams.set("fullartists", item.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
             div.addEventListener('click', (e) => {
-                if (e.target.id = 'clicker') {
+                if (e.target.id === 'clicker') {
                     window.location.href = newurl.toString()
                 }
             })
@@ -143,7 +143,7 @@ if (Code()) {
     document.querySelector('#logout').style.display = 'unset'
     Runner()
     document.getElementById('identity').addEventListener('click', (e) => {
-        if (e.target.id==='identity') {
+        if (e.target.id === 'identity') {
             window.location.href = document.getElementById('identity').getAttribute('redir')
         }
     })

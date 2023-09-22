@@ -2,9 +2,11 @@
 	box-sizing: border-box;	
 	font-family: sans-serif;
 }
-[content-editable]{
+[contenteditable='true']{
 	outline: none;
 }
+
+
 @font-face {
 	font-family: Gotham;
 	font-weight: bold;
@@ -102,16 +104,12 @@ body {
 	overflow-x: hidden;
 	align-self: flex-end;
 }
-.container-inner p::before{
-	content: '•';
-	opacity: 0.25;
-}
+  
 p {
 	color: white;
 	margin: 12px 0;
 	font-size: 18px;
-	font-family: sans-serif;
-	letter-spacing: 0.44px;
+	font-family: sans-serif; 
 }
 
 .container-inner #bar {

@@ -24,7 +24,7 @@
     <div id="body">
         <div id="lyricsContainer" class="container">
             <div class="container-inner">
-                <%pagelyrics.forEach(bar=> {bar = bar.toString();
+                <%pagelyrics.forEach(bar=> {bar = bar.toString().trim();
                     if (bar == '') { ;%>
                     <br> 
                     <% }else if (bar[0]=="[" ){ %>

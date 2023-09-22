@@ -1,10 +1,10 @@
 function downloadimage() {
-    var container = document.getElementById("mainContainer");
+    let container = document.getElementById("mainContainer");
     html2canvas(container, {
         allowTaint: true, useCORS: true, backgroundColor: null, imageTimeout: 15000
     }).then(function (canvas) {
         container.style.boxShadow = 'none'
-        var link = document.createElement("a");
+        let link = document.createElement("a");
         document.body.appendChild(link);
         link.download = "html_image.png";
         link.href = canvas.toDataURL();
@@ -50,29 +50,28 @@ function changeBackground(nodes, items) {
 }
 
 function resize() {
-    var container = document.querySelector('.container');
-    var containerInner = document.querySelector('.container-inner');
-    var containerHeight = container.offsetHeight;
-    var containerScrollHeight = containerInner.scrollHeight;
-    var scrollMarker = document.querySelector('.scroll-marker');
-    var colorfulStuff = document.querySelectorAll('.container-inner span'); // colorful spans from text
+    let container = document.querySelector('.container');
+    let containerInner = document.querySelector('.container-inner');
+    let containerHeight = container.offsetHeight;
+    let containerScrollHeight = containerInner.scrollHeight;
+    let scrollMarker = document.querySelector('.scroll-marker');
+    let colorfulStuff = document.querySelectorAll('.container-inner span'); // colorful spans from text
     colorfulStuff.forEach(function (span) { // loop to create each marker
-        var spanTop = span.offsetTop;
-        var spanBottom = spanTop + span.offsetHeight;
-        var markerTop = Math.ceil(spanTop * containerHeight / containerScrollHeight);
-        var markerBottom = Math.ceil(spanBottom * containerHeight / containerScrollHeight);
-        if (span.className === "marker") { var markerColor = 'black'; }
-        var markerElement = document.createElement("span"); // create the marker, set color and position and put it there
-        markerElement.style.backgroundColor = markerColor;
+        let spanTop = span.offsetTop;
+        let spanBottom = spanTop + span.offsetHeight;
+        let markerTop = Math.ceil(spanTop * containerHeight / containerScrollHeight);
+        let markerBottom = Math.ceil(spanBottom * containerHeight / containerScrollHeight);
+        let markerElement = document.createElement("span"); // create the marker, set color and position and put it there
+        markerElement.style.backgroundColor = 'black';
         markerElement.style.top = markerTop + "px"
         markerElement.style.height = (markerBottom - markerTop + 2) + "px"
         scrollMarker.appendChild(markerElement);
     })
 }
 resize()
-addEventListener("resize", (event) => { resize() });
-var kids = document.getElementById('lyricsContainer').querySelectorAll('#bar')
-var selected = []
+document.addEventListener("resize", (event) => { resize() });
+let kids = document.getElementById('lyricsContainer').querySelectorAll('#bar')
+let selected = []
 for (let i = 0; i < kids.length; i++) {
     const el = kids[i];
     el.addEventListener('click', (e) => {
@@ -87,20 +86,14 @@ for (let i = 0; i < kids.length; i++) {
             document.getElementById('barz').removeChild(document.getElementById('barz').firstChild)
         }
         selected.forEach(el => {
-            const text = kids[el].textContent
-            var clone = kids[el].cloneNode(false)
-            clone.textContent = text
-            clone.className = ''
-            clone.style.backgroundColor = 'transparent'
-            clone.style.borderInline = 'none'
-            clone.style.color = 'white'
-            clone.style.margin = '5px 0'
-            document.getElementById('barz').appendChild(clone)
-            //var breaker = document.createElement('br')
-            //document.getElementById('barz').appendChild(breaker)
+            const text = kids[el].textContent 
+            let clone = document.createElement('p')
+            clone.textContent = text.trim()
+            clone.id = 'bar'
+            document.getElementById('barz').appendChild(clone) 
         })
         if (document.getElementById('barz').hasChildNodes() == false) {
-            var a = document.createElement('h3')
+            let a = document.createElement('h3')
             a.id = 'bar'
             a.setAttribute('contenteditable', 'true')
             const text = document.createTextNode("choose or type lyrics");
