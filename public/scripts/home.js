@@ -54,7 +54,7 @@ async function getCurrentPlaying(token) {
     return await result.json()
 }
 async function getRecent(token) {
-    const result = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=5`, { method: "GET", headers: { Authorization: `Bearer ${token}` } })
+    const result = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=3`, { method: "GET", headers: { Authorization: `Bearer ${token}` } })
     return await result.json()
 }
 async function fetchProfile(token) {
@@ -80,8 +80,26 @@ function PopulateRecent() {
             let title = document.createElement('span')
             img.src = item.img; img.style.height = '40px'; img.style.width = '40px'
             title.innerHTML = `<a target='_blank' href=${item.href}>${item.name}</a> - ${item.artists.reduce((Artists, el) => { return Artists + `<a target='_blank'  href="${el.link}">` + el.name + `</a>` + ', ' }, '').slice(0, -2)}`
-            div.appendChild(img); div.appendChild(title)
+
+            let logo = document.createElement('img')
+            logo.src = '../src/Spotify_Logo_RGB_White.png'
+            logo.id = 'spotify_logo' 
+            let logow = document.createElement('div')
+            logow.appendChild(logo)
+            logow.id = 'logo'
+            let after = document.createElement('div')
+            after.id = 'after'
+            after.textContent = 'Get Lyrics'
+
+            let wrap = document.createElement('div')
+            wrap.id ='cwrap'
+            wrap.appendChild(img)
+            wrap.appendChild(title)
+            div.appendChild(logow);div.appendChild(wrap); div.appendChild(after)
             div.id = 'clicker'
+
+
+
             let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
             newurl.pathname = '/spotifylyrics'
             newurl.searchParams.set("artist", item.artists[0].name)
@@ -112,6 +130,18 @@ async function Runner() {
             title0.innerHTML = `<a target='_blank' href=${track.href}>${track.name}</a>`;
             artist0.innerHTML = `${track.artists.reduce((Artists, item) => { return Artists + `<a target='_blank' href="${item.link}">` + item.name + `</a>` + ', ' }, '').slice(0, -2)}`;
             div1.id = 'name'
+
+            let logo = document.createElement('img')
+            logo.src = '../src/Spotify_Logo_RGB_White.png'
+            logo.id = 'spotify_logo' 
+            let logow = document.createElement('div')
+            logow.appendChild(logo)
+            logow.id = 'logo'
+            let after = document.createElement('div')
+            after.id = 'after'
+            after.textContent = 'Get Lyrics'
+            let wrap = document.createElement('div'); wrap.id = 'cwrap'
+            wrap.appendChild(img0); div1.appendChild(title0); div1.appendChild(artist0); wrap.appendChild(div1); wrap
             let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
             newurl.pathname = '/spotifylyrics'
             newurl.searchParams.set("artist", track.artists[0].name)
@@ -120,7 +150,7 @@ async function Runner() {
             newurl.searchParams.set("fullartists", track.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
             div0.setAttribute('redir', newurl.toString())
             while (div0.hasChildNodes()) { div0.firstChild.remove() }
-            div0.appendChild(img0); div1.appendChild(title0); div1.appendChild(artist0); div0.appendChild(div1)
+            div0.appendChild(logow); div0.appendChild(wrap); div0.appendChild(after);
         }
         currentPlay = track
         PopulateRecent()

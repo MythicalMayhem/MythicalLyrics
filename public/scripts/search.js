@@ -147,7 +147,7 @@ async function PopulateSearch(term) {
             </div>
             <div id="other"> 
             <img id="spotify_logo"
-                    src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png"
+                    src="src/Spotify_Logo_RGB_White.png"
                     alt="spotify icon" />
             </div>
         `

@@ -106,12 +106,18 @@ body {
 	flex-wrap: nowrap;
 	gap: 30px;
 }
+#cwrap {
+	display: flex;
+	flex-direction: row; 
+	flex-wrap: nowrap;
+	gap: 10px; 
+	margin-left: 10%;
+}
 #player #identity {
 	width: 100%;
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 10px;
+	flex-direction: column;
+	align-items: flex-start; 
 	position: relative;
 	margin-top: 10px;
 }
@@ -149,7 +155,7 @@ body {
 #player #history {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	gap: 5px;
 	position: relative;
 	width: 100%;
@@ -163,44 +169,47 @@ body {
 	content: "history";
 	position: absolute;
 }
-#identity::after,
-#player #history div::after {
-	font-weight: bold;
-	content: "Get Lyrics";
-	text-decoration: underline;
-	color: #c3073f;
-	position: absolute;
-	top: 45px;
-	right: 10px;
+ 
+#logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	font-size:10px ;
 }
-#identity {
-	border-bottom: 30px solid #4e4e50;
-}
-#identity::after {
+#spotify_logo {
+	width:71px;
+	margin: 12.5px;
+	z-index: 10;
+} 
+ 
+#after {
 	font-weight: bold;
 	top: 90px;
+	color: #c3073f;
+	align-self: flex-end;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
-#player #history div {
+#player #history > div {
 	position: relative;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	border-bottom: 20px solid #4e4e50;
-	gap: 10px;
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;  
 }
-#player #history div,
+
+#player #history > div,
 #identity {
 	cursor: pointer;
 	display: flex;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	background-color: #4e4e50;
-	flex-direction: row;
-	padding: 3px;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: center;
+	background-color: #434343; 
+	padding: 3px;  
 }
 #identity {
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
