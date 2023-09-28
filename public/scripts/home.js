@@ -34,7 +34,7 @@ function Code() {
 
 class trackConstruct {
     constructor(searchItem) {
-        this.name = searchItem['name']
+        this.name = searchItem['name'].replace(/\(feat.*\)/, '')
         this.img = searchItem['album']['images'][1]['url']
         this.artists = this.getArtists(searchItem['artists'])
         this.length = searchItem['duration_ms']
@@ -83,7 +83,7 @@ function PopulateRecent() {
 
             let logo = document.createElement('img')
             logo.src = '../src/Spotify_Logo_RGB_White.png'
-            logo.id = 'spotify_logo' 
+            logo.id = 'spotify_logo'
             let logow = document.createElement('div')
             logow.appendChild(logo)
             logow.id = 'logo'
@@ -92,24 +92,21 @@ function PopulateRecent() {
             after.textContent = 'Get Lyrics'
 
             let wrap = document.createElement('div')
-            wrap.id ='cwrap'
+            wrap.id = 'cwrap'
             wrap.appendChild(img)
             wrap.appendChild(title)
-            div.appendChild(logow);div.appendChild(wrap); div.appendChild(after)
+            div.appendChild(logow); div.appendChild(wrap); div.appendChild(after)
             div.id = 'clicker'
 
 
 
             let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-            newurl.pathname = '/spotifylyrics'
+            newurl.pathname = '/slyrics'
             newurl.searchParams.set("artist", item.artists[0].name)
             newurl.searchParams.set("track", item.name)
-            newurl.searchParams.set("albumart", item.img)
             newurl.searchParams.set("fullartists", item.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
             div.addEventListener('click', (e) => {
-                if (e.target.id === 'clicker') {
-                    window.location.href = newurl.toString()
-                }
+                if (e.target === div) { window.location.href = newurl.toString() }
             })
             document.getElementById('history').appendChild(div)
         }
@@ -133,7 +130,7 @@ async function Runner() {
 
             let logo = document.createElement('img')
             logo.src = '../src/Spotify_Logo_RGB_White.png'
-            logo.id = 'spotify_logo' 
+            logo.id = 'spotify_logo'
             let logow = document.createElement('div')
             logow.appendChild(logo)
             logow.id = 'logo'
@@ -143,10 +140,9 @@ async function Runner() {
             let wrap = document.createElement('div'); wrap.id = 'cwrap'
             wrap.appendChild(img0); div1.appendChild(title0); div1.appendChild(artist0); wrap.appendChild(div1); wrap
             let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-            newurl.pathname = '/spotifylyrics'
+            newurl.pathname = '/slyrics'
             newurl.searchParams.set("artist", track.artists[0].name)
             newurl.searchParams.set("track", track.name)
-            newurl.searchParams.set("albumart", track.img)
             newurl.searchParams.set("fullartists", track.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
             div0.setAttribute('redir', newurl.toString())
             while (div0.hasChildNodes()) { div0.firstChild.remove() }
@@ -172,11 +168,7 @@ if (Code()) {
     document.querySelectorAll('#login')[1].style.display = 'none'
     document.querySelector('#logout').style.display = 'unset'
     Runner()
-    document.getElementById('identity').addEventListener('click', (e) => {
-        if (e.target.id === 'identity') {
-            window.location.href = document.getElementById('identity').getAttribute('redir')
-        }
-    })
+    document.getElementById('identity').addEventListener('click', (e) => { if (e.target === document.getElementById('identity')) { window.location.href = document.getElementById('identity').getAttribute('redir') } })
 
 } else {
     document.querySelector('#account').querySelector('p').style.display = 'none'

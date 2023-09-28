@@ -1,5 +1,7 @@
 * {
 	box-sizing: border-box;
+	font-family: sans-serif;
+	color: whitesmoke; 
 	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
 }
 ::-webkit-scrollbar {
@@ -11,8 +13,21 @@ html {
 	margin: 0;
 	padding: 0;
 }
-
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 body {
+	background: linear-gradient(-45deg, #303030, gray, #4e4e50);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
 	min-height: 100%;
 	height: fit-content;
 	background-color: #303030;
@@ -108,16 +123,16 @@ body {
 }
 #cwrap {
 	display: flex;
-	flex-direction: row; 
+	flex-direction: row;
 	flex-wrap: nowrap;
-	gap: 10px; 
+	gap: 10px;
 	margin-left: 10%;
 }
 #player #identity {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; 
+	align-items: flex-start;
 	position: relative;
 	margin-top: 10px;
 }
@@ -169,20 +184,20 @@ body {
 	content: "history";
 	position: absolute;
 }
- 
+
 #logo {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
-	font-size:10px ;
+	font-size: 10px;
 }
 #spotify_logo {
-	width:71px;
+	width: 71px;
 	margin: 12.5px;
 	z-index: 10;
-} 
- 
+}
+
 #after {
 	font-weight: bold;
 	top: 90px;
@@ -198,7 +213,7 @@ body {
 	flex-direction: column;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;  
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #player #history > div,
@@ -208,8 +223,8 @@ body {
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-	background-color: #434343; 
-	padding: 3px;  
+	background-color: #434343;
+	padding: 3px;
 }
 #identity {
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
@@ -330,26 +345,27 @@ footer {
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	align-self: flex-end;
-	gap: 20px 0;
+	gap: 20px;
+	width: fit-content;
+	max-width: 700px;
 	box-sizing: border-box;
 	padding: 17px;
-	margin: 10px;
-	border-radius: 5px;
-	background-color: #4e4e50c7;
-}
-footer p {
-	text-overflow: ellipsis;
-	color: whitesmoke;
+	margin-bottom: 10px;
+	background-color: none;
 	font-family: sans-serif;
 	text-align: center;
-	height: fit-content;
+	align-self: flex-end;
+}
+footer p {
 	margin: unset;
 }
-footer a {
-	color: unset;
+a {
+	color: #c3073f;
+	font-weight: bold;
 }
-
+a:hover {
+	color: crimson;
+}
 @media only screen and (max-width: 1100px) {
 	html {
 		overflow: auto;

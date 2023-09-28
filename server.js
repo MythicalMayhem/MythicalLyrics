@@ -92,47 +92,35 @@ app.get(/^(\/gnsearch)/, (req, res) => {
       .catch((e) => { res.status(501)({ 'error': String(e) }) })
   }
 })
-app.get(/^(\/spotifylyrics)/, (req, res) => {
-  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  let url = new URL(fullUrl)
+app.get(/^(\/slyrics)/, (req, res) => {
+  let url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl)
   let params = new URLSearchParams(url.search)
-  if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
-  const track = decodeURI(url.searchParams.get('track'))
-  const artist = decodeURI(url.searchParams.get('artist'))
-  const albumart = new URL(fullUrl).searchParams.get('albumart')
-  const fullartists = new URL(fullUrl).searchParams.get('fullartists')
-  const options = {
-    apiKey: geniusApiKey,
-    title: track.toString(),
-    artist: artist.toString(),
-    optimizeQuery: true,
-  }
-  getLyrics(options).then((lyrics) => {
-    if (lyrics) {
-      let newlyrics = lyrics.split('\n')
-      res.render('lyrics', { pagelyrics: newlyrics, title: track, author: fullartists, art: albumart })
-    } else { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) }
-  })
+  if (!(params.has('track') && params.has('artist') && params.has('fullartists'))) { res.send('unformatted url'); return }
 
+  const track = decodeURI(params.get('track'))  // ! check if url params are encoded first
+  const artist = decodeURI(params.get('artist'))
+  const fullartists = decodeURI(params.get('fullartists'))
+
+  const options = { apiKey: geniusApiKey, title: track, artist: artist, optimizeQuery: true }
+
+  searchSong(options).then((r) => { return r[0] })
+    .then((r) => { getLyrics(r.url).then((lyrics) => { res.render('lyrics', { pagelyrics: lyrics.split('\n'), title: track.replace(/\(feat.*\)/, ''), author: fullartists, art: r.albumArt }) }) })
+    .catch((e) => { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) })
 })
 
 app.get(/^(\/geniuslyrics)/, (req, res) => {
-  let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  let url0 = new URL(fullUrl)
-  let params = new URLSearchParams(url0.search)
+  let url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl)
+  let params = new URLSearchParams(url.search)
   if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
-  const track = decodeURI(url0.searchParams.get('track'))
-  const artist = decodeURI(url0.searchParams.get('artist'))
-  const art = decodeURI(url0.searchParams.get('art'))
-  const options = decodeURI(url0.searchParams.get('url'))
+
+  const track = decodeURI(params.get('track'))
+  const artist = decodeURI(params.get('artist'))
+  const art = decodeURI(params.get('art'))
+  const options = decodeURI(params.get('url'))
+
   extractLyrics(options).then((lyrics) => {
-    if (lyrics) {
-      let newlyrics = lyrics.split('\n')
-      res.render('lyrics', { pagelyrics: newlyrics, title: track, author: artist, art: art })
-    } else {
-      res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
-    }
+    res.render('lyrics', { pagelyrics: lyrics.split('\n'), title: track.replace(/\(feat.*\)/, ''), author: artist, art: art })
   }).catch((e) => {
     res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
   })
-})
+}) 

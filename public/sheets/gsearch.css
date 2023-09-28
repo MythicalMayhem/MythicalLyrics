@@ -8,8 +8,15 @@
 html {
 	height: 100%;
 }
-
+@keyframes gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
+}
 body {
+	background: linear-gradient(-45deg, #303030,gray, #4e4e50);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
 	width: 100%;
 	min-height: 100%;
 	height: fit-content;
@@ -137,8 +144,7 @@ footer {
 	max-width: 700px; 
 	box-sizing: border-box; 
 	padding: 17px;
-	margin-bottom: 10px; 
-	background-color: none; 
+	margin-bottom: 10px;  
 
 	text-align: center;
 	align-self: flex-end;

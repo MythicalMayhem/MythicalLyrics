@@ -136,58 +136,35 @@ async function PopulateSearch(term) {
     document.getElementById('container').innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
         let artists = []
-        for (index of arr[i].artists) { artists.push(`<a id='artist' target="_blank" href=${index['link']}> ${index['name']}`) }
-        artists = artists.join(',</a>') + '</a>'
+        for (index of arr[i].artists) { artists.push(`<a id='artist' target="_blank" href=${index['link']}>${index['name']}`) }
         let template = ` 
-            <img id="img" src="${arr[i].img}" alt="track image" >
-            <p id="duration">${mtmas(arr[i].length)}</p>
-            <div id="identity">
-                <a target="_blank" id='title' href="${arr[i].href}">${arr[i].name}</a>
-                <div>${artists}</div>
-            </div>
-            <div id="other"> 
-            <img id="spotify_logo"
-                    src="src/Spotify_Logo_RGB_White.png"
-                    alt="spotify icon" />
-            </div>
-        `
+            <img id="img" src="${arr[i].img}" alt="track image"><p id="duration">${mtmas(arr[i].length)}</p>
+            <div id="identity"><a target="_blank" id='title' href="${arr[i].href}">${arr[i].name}</a><div>${artists.join(',</a>') + '</a>'}</div></div>
+            <div id="other"><img id="spotify_logo" src="src/Spotify_Logo_RGB_White.png" alt="spotify icon" /></div>`
 
         const container = document.createElement("div");
-        container.setAttribute("id", 'template')
+        container.id = 'template'
         container.setAttribute("track", `${arr[i].name}`)
         container.setAttribute("artist", `${arr[i].artists[0].name}`)
-        container.setAttribute("art", `${arr[i].img}`)
         container.innerHTML = template
-        container.addEventListener('click', (e) => {
+        container.addEventListener('click', (e) => {//touchstart
             if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
                 let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
                 newurl.searchParams.set("fullartists", arr[i].artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
-                newurl.pathname = '/spotifylyrics'
+                newurl.pathname = '/slyrics'
                 newurl.searchParams.set("artist", container.getAttribute('artist'))
                 newurl.searchParams.set("track", container.getAttribute('track'))
-                newurl.searchParams.set("albumart", container.getAttribute('art'))
                 window.location.href = newurl.toString()
             }
-        })
-        // container.addEventListener('touchstart', (e) => {
-        //     if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
-        //         let  newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-        //         newurl.pathname = '/spotifylyrics'
-        //         newurl.searchParams.set("artist", container.getAttribute('artist'))
-        //         newurl.searchParams.set("track", container.getAttribute('track'))
-        //         newurl.searchParams.set("albumart", container.getAttribute('art').substring(container.getAttribute('art').lastIndexOf('/') + 1))
-        //         window.location.href = newurl.toString()
-        //     }
-        // })
+        }) 
         document.getElementById('container').appendChild(container)
     }
-
 }
 
 
 
 PopulateSearch('a')
-var call
+let call
 async function searchLegit(term) {
     clearTimeout(call)
     call = setTimeout(() => { PopulateSearch(term) }, 500)

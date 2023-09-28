@@ -1,6 +1,7 @@
 *{
-	box-sizing: border-box;	
+	box-sizing: border-box;
 	font-family: sans-serif;
+	color: whitesmoke; 
 }
 [contenteditable='true']{
 	outline: none;
@@ -26,8 +27,15 @@
 html,body {
 	height: 100%;
 } 
-
+@keyframes gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
+}
 body {
+	background: linear-gradient(-45deg, #303030,gray, #4e4e50);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
 	display: flex;
 	flex-direction: column;
 	background-color: #303030; 
@@ -248,31 +256,31 @@ p {
 	margin: 30px 0;
 }
 
-footer { 
+footer {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	gap: 10px;
+	gap: 20px;
 	width: fit-content;
-	max-width: 700px; 
-	box-sizing: border-box; 
-	padding: 14px; 
-	background-color: none; 
-
+	max-width: 700px;
+	box-sizing: border-box;
+	padding: 17px;
+	margin-bottom: 10px;
+	background-color: none;
+	font-family: sans-serif;
 	text-align: center;
 	align-self: flex-end;
 }
 footer p {
 	margin: unset;
-	
-} 
+}
 a {
-	color: #c3073f; 
+	color: #c3073f;
 	font-weight: bold;
 }
-a:hover{
+a:hover {
 	color: crimson;
 }
 @media only screen and (max-width: 1050px) {

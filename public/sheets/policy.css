@@ -1,3 +1,8 @@
+*{
+	box-sizing: border-box;
+	font-family: sans-serif;
+	color: whitesmoke; 
+}
 html,
 body {
 	height: 100%;
@@ -5,8 +10,15 @@ body {
 	margin: 0;
 }
 
-body { 
-
+@keyframes gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
+}
+body {
+	background: linear-gradient(-45deg, #303030,gray, #4e4e50);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
 	background-color: #303030;
 	display: flex;
 	flex-direction: column;
@@ -72,18 +84,15 @@ footer {
 	align-items: center;
 	justify-content: space-evenly;
 	gap: 20px;
-	width: 50%;
+	width: fit-content;
 	max-width: 700px;
-	min-width: 250px;
-
 	box-sizing: border-box;
 	padding: 17px;
 	margin-bottom: 10px;
-
-	border-radius: 5px;
-	color: whitesmoke;
+	background-color: none;
 	font-family: sans-serif;
 	text-align: center;
+	align-self: flex-end;
 }
 footer p {
 	margin: unset;
