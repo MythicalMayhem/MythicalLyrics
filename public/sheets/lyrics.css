@@ -1,12 +1,19 @@
-*{
+* {
 	box-sizing: border-box;
 	font-family: sans-serif;
-	color: whitesmoke; 
 }
-[contenteditable='true']{
+:root {
+	--textC: white;
+	--bgc: #212121;
+	--bgcDarker: #151515;
+	--bgcLighter: #303030;
+	--opposite: black;
+	--selected: black;
+	--unselected: white;
+}
+[contenteditable="true"] {
 	outline: none;
 }
-
 
 @font-face {
 	font-family: Gotham;
@@ -20,34 +27,42 @@
 	src: url("../Fonts/GothamMedium.ttf");
 }
 
-:root{
-	--bgc :#303030
-	--wrapper : #4e4e50
-}
-html,body {
+html,
+body {
 	height: 100%;
-} 
+}
 @keyframes gradient {
-	0% {background-position: 0% 50%;}
-	50% {background-position: 100% 50%;}
-	100% {background-position: 0% 50%;}
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 body {
-	background: linear-gradient(-45deg, #303030,gray, #4e4e50);
+	background: linear-gradient(
+		-45deg,
+		var(--bgcDarker),
+		var(--bgc),
+		var(--bgcLighter)
+	);
 	background-size: 400% 400%;
 	animation: gradient 5s ease infinite;
 	display: flex;
 	flex-direction: column;
-	background-color: #303030; 
+	background-color: var(--bgc);
 	margin: 0;
 	min-width: 300px;
 	justify-content: space-between;
 	align-items: center;
 	gap: 1cm;
-	
-		width: 100%;
+	width: 100%;
 	min-width: 320px;
 }
+
 #body {
 	width: 100%;
 	height: fit-content;
@@ -55,7 +70,7 @@ body {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	flex-wrap: wrap; 
+	flex-wrap: wrap;
 }
 
 #nav {
@@ -78,25 +93,28 @@ body {
 
 #nav a {
 	padding: 0 10px;
-	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
-	color: whitesmoke;
+	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+	color: var(--textC);
 	font-size: 25px;
 	transition: all 0.2s ease-in-out;
 	text-decoration: none;
+	font-weight: bolder;
 }
 
-#nav a:hover {
-	color: #950740;
+#nav a:hover,a:hover {
+	color: var(--bgcLighter);
 }
-
-
+a {
+	font-weight: bolder;
+	color: var(--textC);
+}
 .container {
-	background-color: #950740;
+	background-color: var(--bgc);
 	position: relative;
 	height: 100%;
 	max-height: 500px;
 	max-width: 50%;
-	min-width: 300px; 
+	min-width: 300px;
 	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.65);
 	display: flex;
 	flex-wrap: nowrap;
@@ -112,12 +130,12 @@ body {
 	overflow-x: hidden;
 	align-self: flex-end;
 }
-  
+
 p {
-	color: white;
+	color: var(--textC);
 	margin: 12px 0;
 	font-size: 18px;
-	font-family: sans-serif; 
+	font-family: sans-serif;
 }
 
 .container-inner #bar {
@@ -125,7 +143,7 @@ p {
 }
 
 .marker {
-	text-decoration: underline;
+	background-color: var(--textC);
 }
 
 .scroll-marker {
@@ -138,12 +156,10 @@ p {
 }
 
 .scroll-marker span {
-	/* markers */
 	position: absolute;
 	width: 100%;
 }
 
-/* width */
 ::-webkit-scrollbar {
 	width: 0;
 }
@@ -154,12 +170,12 @@ p {
 
 /* Track */
 .container-inner::-webkit-scrollbar-track {
-	background: #950740;
+	background: var(--bgc);
 }
 
 /* Handle */
 .container-inner::-webkit-scrollbar-thumb {
-	background: crimson;
+	background: var(--bgcLighter);
 }
 
 #wrapper {
@@ -173,7 +189,7 @@ p {
 }
 
 #mainContainer {
-	background-color: #191414;
+	background-color: var(--bgc);
 	height: fit-content;
 	width: 320px;
 	padding: 25px;
@@ -195,7 +211,7 @@ p {
 #identity > img {
 	height: 80px;
 	width: 80px;
-	background-color: black;
+	background-color: var(--bgc);
 }
 
 #identity div {
@@ -211,7 +227,7 @@ p {
 }
 
 #name p {
-	color: white;
+	color: var(--textC);
 	padding: 0;
 	margin: 3px;
 	margin-left: 22px;
@@ -234,14 +250,14 @@ p {
 	margin: 2px 0;
 	font-family: Gotham;
 	font-size: 1.5em;
-	color: Black;
+	color: var(--textC);
 	border-radius: 5px;
 	outline: 0px solid transparent;
 }
 
 #barz #bar {
 	font-size: 1.425em;
-	color: white;
+	color: var(--textC);
 	padding: 1.5px 0;
 }
 
@@ -252,7 +268,7 @@ p {
 	text-decoration: 1.5px underline;
 	border: none;
 	font-weight: bolder;
-	color: white;
+	color: var(--textC);
 	margin: 30px 0;
 }
 
@@ -276,13 +292,7 @@ footer {
 footer p {
 	margin: unset;
 }
-a {
-	color: #c3073f;
-	font-weight: bold;
-}
-a:hover {
-	color: crimson;
-}
+ 
 @media only screen and (max-width: 1050px) {
 	body {
 		height: fit-content;
@@ -292,7 +302,7 @@ a:hover {
 		align-items: center;
 	}
 
-	#lyricsContainer { 
+	#lyricsContainer {
 		width: 75%;
 		max-width: unset;
 	}

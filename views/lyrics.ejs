@@ -9,8 +9,7 @@
     </title>
     <link rel="icon" type="image/x-icon" href="/src/favicon.png">
     <link rel="stylesheet" href="sheets/lyrics.css">
-    <script defer src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script defer src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> 
     <script defer src="scripts/lyrics.js"></script>
 </head>
 
@@ -24,20 +23,16 @@
     <div id="body">
         <div id="lyricsContainer" class="container">
             <div class="container-inner">
-                <%pagelyrics.forEach(bar=> {bar = bar.toString().trim();
-                    if (bar == '') { ;%>
-                    <br> 
-                    <% }else if (bar[0]=="[" ){ %>
-            <p id=' bar'>
-            <span class="marker">
+                <%pagelyrics.forEach(bar=> {bar = bar.toString().trim();if (bar == '') { %><br> 
+                    <% }else if (bar[0]==`[`){ %>
+                        <p id='bar'><span >
                 <%=bar %>
-            </span>
-            </p><br>
+            </span></p><br>
             <%}else{%>
                 <p id="bar">
                     <%= bar %>
                 </p>
-                <%}})%>
+                <%} } )%>
 
 
                     </div>
@@ -60,7 +55,8 @@
                             </div>
                             <div id="barz">
                                 <br>
-                                <h3 spellcheck="false" contenteditable="true" id="bar">choose or type lyrics</h3>
+                                <h3 spellcheck="false" contenteditable="true" id="bar">choose or type lyrics
+                                </h3>
                                 <br>
                             </div>
                             <div id="other">

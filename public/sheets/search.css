@@ -83,10 +83,10 @@ body {
 	text-indent: 25px;
 	height: 1.1cm;
 	width: 100%;
-	background-color: #303030;
+	background-color: transparent;
 	border: none;
 	outline: none;
-	color: white;
+	color: whitesmoke;
 	border-bottom: 3px solid white;
 }
 

@@ -69,12 +69,12 @@ form {
 #searcher {
 	max-width: 600px;
 	width: 90%;
-	font-size: 35px;
+	font-size: 40px;
 	padding: 10px;
 	text-indent: 25px;
-	height: 1.1cm;
-	background-color: #303030;
+	height: 1.25cm; 
 	border: none;
+	background-color:transparent;
 	outline: none;
 	color: white;
 	margin-bottom: 20px;

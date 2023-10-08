@@ -1,7 +1,8 @@
 * {
+	transition: all 0.2s ease-in-out;
 	box-sizing: border-box;
 	font-family: sans-serif;
-	color: whitesmoke; 
+	color: whitesmoke;
 	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
 }
 ::-webkit-scrollbar {
@@ -68,7 +69,7 @@ body {
 	font-family: sans-serif;
 	color: whitesmoke;
 	font-size: 25px;
-	transition: all 0.2s ease-in-out;
+
 	text-decoration: none;
 }
 #nav a:hover {
@@ -215,7 +216,9 @@ body {
 		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
 		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-
+#clicker span a:nth-child(1) {
+	font-weight: bold;
+}
 #player #history > div,
 #identity {
 	cursor: pointer;
@@ -230,6 +233,7 @@ body {
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
 		rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
 #introduction {
 	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
 		0px 18px 23px rgba(0, 0, 0, 0.1);
@@ -265,6 +269,7 @@ body {
 	max-width: 250px;
 	flex-grow: 1;
 }
+
 #searchnow {
 	cursor: pointer;
 	border: none;
@@ -359,10 +364,7 @@ footer {
 footer p {
 	margin: unset;
 }
-a {
-	color: #c3073f;
-	font-weight: bold;
-}
+
 a:hover {
 	color: crimson;
 }
