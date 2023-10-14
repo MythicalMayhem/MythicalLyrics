@@ -144,19 +144,22 @@ async function PopulateSearch(term) {
 
         const container = document.createElement("div");
         container.id = 'template'
-        container.setAttribute("track", `${arr[i].name}`)
-        container.setAttribute("artist", `${arr[i].artists[0].name}`)
-        container.innerHTML = template
-        container.addEventListener('click', (e) => {//touchstart
+
+
+        let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
+        newurl.pathname = '/slyrics'
+        newurl.searchParams.set("fullartists", arr[i].artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
+        newurl.searchParams.set("artist", `${arr[i].artists[0].name}`)
+        newurl.searchParams.set("track", `${arr[i].name}`)
+
+        container.setAttribute('redir', newurl)
+        container.addEventListener('click', (e) => {
             if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
-                let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-                newurl.searchParams.set("fullartists", arr[i].artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
-                newurl.pathname = '/slyrics'
-                newurl.searchParams.set("artist", container.getAttribute('artist'))
-                newurl.searchParams.set("track", container.getAttribute('track'))
-                window.location.href = newurl.toString()
+                window.location = (container.getAttribute('redir'))
             }
-        }) 
+        })
+
+        container.innerHTML = template
         document.getElementById('container').appendChild(container)
     }
 }

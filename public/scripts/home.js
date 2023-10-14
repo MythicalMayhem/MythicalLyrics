@@ -158,8 +158,8 @@ function logout() {
     deleteCookie('token')
     deleteCookie('autoLogin')
     window.location = '/'
-}
-
+} 
+console.log(document.cookie)
 if (Code()) {
     PopulateRecent()
     PopulateProfile(Code())

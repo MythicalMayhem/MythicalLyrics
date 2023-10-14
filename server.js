@@ -3,6 +3,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const extractLyrics = require('./modules/utils/extractLyrics')
 const searchSong = require('./modules/searchSong')
+const getSongById = require('./modules/getSongById')
 const getLyrics = require('./modules/getLyrics')
 
 const getPixels = require("get-pixels")
@@ -44,22 +45,12 @@ async function token(base, code) {
 }
 
 
-/*const src = 'https://images.genius.com/d1072d91baa4d93f3eef3b6b86b3e1aa.1000x1000x1.png'
-  getPixels(src, (err, pixels) => {
-    if (!err) {
-      const data = [...pixels.data]
-      const width = Math.round(Math.sqrt(data.length / 4))
-      const height = width
-      extractColors({ data, width, height })
-      // .then(console.log)
-      // .catch(console.log)
-    }
-  })*/
+
 
 
 app.get('/', (req, res) => { res.redirect('/home') })
 app.get(/^(\/search)/, (req, res) => { res.render('search') })
-app.get(/^(\/gsearch)/, (req, res) => { res.render('gsearch') })
+app.get(/^(\/gsearch)$/, (req, res) => { res.render('gsearch') })
 app.get(/^(\/privacy)/, (req, res) => { res.render('privacy') })
 app.get(/^(\/about)/, (req, res) => { res.render('about') })
 app.get('/home', (req, res) => { res.render('home') })
@@ -72,9 +63,10 @@ app.get(/^(\/response)/, (req, res) => {
   })
 })
 
-app.get(/^(\/gnsearch)/, (req, res) => {
+app.get(/^(\/gsearchreq)/, (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const query = decodeURI(new URL(fullUrl).searchParams.get('query'))
+  console.log('asdfadsfadsgadsf')
   if (query) {
     const options = {
       apiKey: geniusApiKey,
@@ -83,13 +75,14 @@ app.get(/^(\/gnsearch)/, (req, res) => {
       optimizeQuery: true,
     }
     searchSong(options).then((r) => {
-      return res.status(200).json({
+      console.log(r)
+      res.status(200).json({
         ok: true,
         data: r
       });
 
     })
-      .catch((e) => { res.status(501)({ 'error': String(e) }) })
+      .catch((e) => { res.status(501)({ 'server error': String(e) }) })
   }
 })
 app.get(/^(\/slyrics)/, (req, res) => {
@@ -108,19 +101,18 @@ app.get(/^(\/slyrics)/, (req, res) => {
     .catch((e) => { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) })
 })
 
-app.get(/^(\/geniuslyrics)/, (req, res) => {
+app.get(/^(\/glyrics)/, (req, res) => {
   let url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl)
   let params = new URLSearchParams(url.search)
-  if (!(params.has('track') && params.has('artist'))) { res.send('unformatted url'); return }
+  if (!(params.has('id'))) { res.send('unformatted url'); return }
 
-  const track = decodeURI(params.get('track'))
-  const artist = decodeURI(params.get('artist'))
-  const art = decodeURI(params.get('art'))
-  const options = decodeURI(params.get('url'))
+  const id = decodeURI(params.get('id'))
+  const artists = decodeURI(params.get('fullartists'))
 
-  extractLyrics(options).then((lyrics) => {
-    res.render('lyrics', { pagelyrics: lyrics.split('\n'), title: track.replace(/\(feat.*\)/, ''), author: artist, art: art })
+  getSongById(id, geniusApiKey).then((r) => {
+    res.render('lyrics', { pagelyrics: r.lyrics.split('\n'), title: r.title.replace(/\(feat.*\)/, ''), author: artists, art: r.albumArt }) 
   }).catch((e) => {
+    res.status(501).json({ 'server error': String(e) })
     res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
   })
 }) 

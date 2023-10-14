@@ -41,7 +41,7 @@ function changeBackground(nodes, items) {
         if (items.indexOf(j) == -1) {
             nodes[j].style.backgroundColor = 'var(--bgc)'
             nodes[j].style.borderInline = 'none'
-            nodes[j].style.color = 'var(--selected)'
+            nodes[j].style.color = 'var(--unselected)'
         }
         else {
             nodes[j].style.backgroundColor = 'var(--selected)'
@@ -51,12 +51,12 @@ function changeBackground(nodes, items) {
     }
     if (selected.length >= 5) { return }
     if (items[0] > 0) {
+        nodes[items[0] - 1].style.color = 'var(--selected)'
         nodes[items[0] - 1].style.backgroundColor = 'var(--unselected)'
         nodes[items[0] - 1].style.borderInline = '5px solid ' + 'var(--unselected)'
-        nodes[items[0] - 1].style.color = 'var(--selected)'
     }
     if (items[items.length - 1] < nodes.length - 1) {
-        nodes[items[items.length - 1] + 1].style.color = 'var(--opposite)'
+        nodes[items[items.length - 1] + 1].style.color = 'var(--selected)'
         nodes[items[items.length - 1] + 1].style.backgroundColor = 'var(--unselected)'
         nodes[items[items.length - 1] + 1].style.borderInline = '5px solid ' + 'var(--unselected)'
     }
@@ -69,6 +69,9 @@ function resize() {
     let containerScrollHeight = containerInner.scrollHeight;
     let scrollMarker = document.querySelector('.scroll-marker');
     let colorfulStuff = document.querySelectorAll('.container-inner span'); // colorful spans from text
+
+    while (scrollMarker.hasChildNodes()) { scrollMarker.removeChild(scrollMarker.firstChild) }
+
     colorfulStuff.forEach(function (span) { // loop to create each marker
         let spanTop = span.offsetTop;
         let spanBottom = spanTop + span.offsetHeight;
@@ -93,16 +96,13 @@ function componentToHex(c) { return c.toString(16).length == 1 ? "0" + c.toStrin
 function rgbToHex(r, g, b) { return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b); }
 function adjust(col, amt) {
     if (col[0] == "#") { col = col.slice(1); }
-
     let num = parseInt(col, 16);
-
     let r = (num >> 16) + amt; if (r > 255) { r = 255 } else if (r < 0) { r = 0 };
     let g = (num & 0x0000FF) + amt; if (g > 255) { g = 255 } else if (g < 0) { g = 0 };
     let b = ((num >> 8) & 0x00FF) + amt; if (b > 255) { b = 255 } else if (b < 0) { b = 0 }
-
     return "#" + (g | (b << 8) | (r << 16)).toString(16);
 }
-function getContrastYIQ(hexcolor) {
+function getContrastYIQ(hexcolor) { 
     var r = parseInt(hexcolor.substring(1, 3), 16);
     var g = parseInt(hexcolor.substring(3, 5), 16);
     var b = parseInt(hexcolor.substring(5, 7), 16);
@@ -112,9 +112,7 @@ function getContrastYIQ(hexcolor) {
 function fixHex(HEX) {
     if (HEX[0] == "#") { HEX = HEX.slice(1); }
     if (isNaN(HEX)) { return '#' + HEX }
-    while (HEX.length < 6) {
-        HEX += '0'
-    }
+    while (HEX.length < 6) { HEX += '0' }
     return '#' + HEX
 }
 function setColors() {
@@ -128,16 +126,17 @@ function setColors() {
     r.style.setProperty('--bgc', fixHex(defaultBGC));
     r.style.setProperty('--bgcDarker', fixHex(adjust(defaultBGC, -50)));
     r.style.setProperty('--bgcLighter', fixHex(adjust(defaultBGC, 50)));
-    
-    r.style.setProperty('--selected', fixHex(adjust(defaultBGC, -150)));
-    r.style.setProperty('--unselected', fixHex(adjust(defaultBGC, 150)));
-    
+
+    r.style.setProperty('--selected', fixHex(adjust(defaultBGC, -100)));
+    r.style.setProperty('--unselected', fixHex(adjust(defaultBGC, 100)));
+
     r.style.setProperty('--textC', fixHex(textColor));
     r.style.setProperty('--opposite', fixHex(opposite));
+
     changeBackground(kids, selected)
 }
+imgEl.onload = setColors
 setColors()
-imgEl.onload = () => { setColors() }
 
 
 

@@ -1,13 +1,17 @@
 * {
+	scroll-behavior: smooth;
 	box-sizing: border-box;
 	font-family: sans-serif;
+	transition: all 150ms;
 }
 :root {
-	--textC: white;
 	--bgc: #212121;
 	--bgcDarker: #151515;
 	--bgcLighter: #303030;
+
+	--textC: white;
 	--opposite: black;
+	
 	--selected: black;
 	--unselected: white;
 }

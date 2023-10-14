@@ -1,5 +1,5 @@
 
-var form = document.querySelector("form");
+let form = document.querySelector("form");
 form.addEventListener('submit', handleForm);
 let lastTerm = ''
 let allowed = true
@@ -11,7 +11,7 @@ async function handleForm(e) {
     allowed = false
     lastTerm = term
     setTimeout(() => { allowed = true }, 2250);
-    await fetch(`/gnsearch?query=${term}`)
+    await fetch(`/gsearchreq?query=${term}`)
         .then((res) => { return res.json() })
         .then((res) => {
             if (res.ok === true && res?.data.length > 0) { return populateSearch(res['data']) }
@@ -37,11 +37,10 @@ function populateSearch(res) {
         span2.textContent = el.artists
         let img = document.createElement('img')
         let newurl = new URL(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
-        newurl.pathname = '/geniuslyrics'
-        newurl.searchParams.set("artist", el.artists)
-        newurl.searchParams.set("track", el.title)
-        newurl.searchParams.set("art", el.albumArt)
-        newurl.searchParams.set("url", el.url)
+        newurl.pathname = '/glyrics' 
+        newurl.searchParams.set("id", el.id)
+        newurl.searchParams.set("fullartists", el.artists)
+
         img.style.height = '75px'
         img.style.width = '75px'
         img.src = el.albumArt
@@ -52,6 +51,7 @@ function populateSearch(res) {
         wrapper.appendChild(img)
         wrapper.appendChild(div1)
         wrapper.setAttribute('redir', newurl)
+
         wrapper.addEventListener('click', () => {
             window.location = (wrapper.getAttribute('redir'))
         })
