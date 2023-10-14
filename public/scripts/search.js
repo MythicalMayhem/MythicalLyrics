@@ -154,7 +154,7 @@ async function PopulateSearch(term) {
 
         container.setAttribute('redir', newurl)
         container.addEventListener('click', (e) => {
-            if (e.target.id.toString() == 'artist' || e.target.id.toString() == 'title') { return } else {
+            if (e.target.tagName === 'DIV') {
                 window.location = (container.getAttribute('redir'))
             }
         })

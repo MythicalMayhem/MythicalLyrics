@@ -53,6 +53,7 @@ function populateSearch(res) {
         wrapper.setAttribute('redir', newurl)
 
         wrapper.addEventListener('click', () => {
+            
             window.location = (wrapper.getAttribute('redir'))
         })
         parent.appendChild(wrapper)

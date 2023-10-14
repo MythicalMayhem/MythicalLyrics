@@ -106,7 +106,7 @@ function PopulateRecent() {
             newurl.searchParams.set("track", item.name)
             newurl.searchParams.set("fullartists", item.artists.reduce((Artists, item) => { return Artists + item.name + ', ' }, '').slice(0, -2))
             div.addEventListener('click', (e) => {
-                if (e.target === div) { window.location.href = newurl.toString() }
+                if (e.target.tagName === 'DIV') { window.location.href = newurl.toString() }
             })
             document.getElementById('history').appendChild(div)
         }
@@ -158,7 +158,7 @@ function logout() {
     deleteCookie('token')
     deleteCookie('autoLogin')
     window.location = '/'
-} 
+}
 console.log(document.cookie)
 if (Code()) {
     PopulateRecent()
@@ -168,7 +168,11 @@ if (Code()) {
     document.querySelectorAll('#login')[1].style.display = 'none'
     document.querySelector('#logout').style.display = 'unset'
     Runner()
-    document.getElementById('identity').addEventListener('click', (e) => { if (e.target === document.getElementById('identity')) { window.location.href = document.getElementById('identity').getAttribute('redir') } })
+    document.getElementById('identity').addEventListener('click', (e) => {
+        if (e.target.tagName === 'DIV') {
+            window.location.href = document.getElementById('identity').getAttribute('redir')
+        }
+    })
 
 } else {
     document.querySelector('#account').querySelector('p').style.display = 'none'
