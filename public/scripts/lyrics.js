@@ -3,14 +3,12 @@ function downloadimage() {
     html2canvas(container, {
         allowTaint: true, useCORS: true, backgroundColor: null, imageTimeout: 15000
     }).then(function (canvas) {
-        container.style.boxShadow = 'none'
         let link = document.createElement("a");
         document.body.appendChild(link);
         link.download = "html_image.png";
         link.href = canvas.toDataURL();
         link.target = '_blank';
         link.click();
-        container.style.boxShadow = '0px 0px 20px rgba(0, 0, 0, 0.747)'
     });
 }
 
