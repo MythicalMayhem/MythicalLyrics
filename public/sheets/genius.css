@@ -1,0 +1,264 @@
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;
+	color: whitesmoke;
+}
+::-webkit-scrollbar {
+	width: 0;
+}
+html {
+	height: 100%;
+}
+@keyframes gradient {
+	0% {background-position: 0% 50%;}
+	50% {background-position: 100% 50%;}
+	100% {background-position: 0% 50%;}
+}
+body {
+	background: linear-gradient(-45deg, #303030,gray, #4e4e50);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
+	width: 100%;
+	min-height: 100%;
+	height: fit-content;
+	padding: 0;
+	margin: 0;
+	background-color: #303030;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 3cm;
+}
+#nav {
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 20px 50px;
+	width: fit-content;
+	height: fit-content;
+
+	padding: 15px;
+	border-radius: 10px;
+}
+
+#nav a {
+	padding: 0 10px;
+	text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+	color: whitesmoke;
+	font-size: 25px;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+}
+
+#nav a:hover {
+	color: #950740;
+}
+#wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#searchContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	height: fit-content;
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+#searcher {
+	font-size: 35px;
+	padding: 10px;
+	text-indent: 25px;
+	height: 1.1cm;
+	width: 100%;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: whitesmoke;
+	border-bottom: 3px solid white;
+}
+
+#container {
+	box-sizing: border-box;
+	background-color: #4e4e50;
+	width: 70%;
+	padding: 0.5cm;
+	border-radius: 0.6cm;
+	box-shadow: 0px 0px 10px 1px rgba(27, 27, 27, 0.781);
+	display: flex;
+	height: fit-content;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: center;
+}
+
+#template {
+	cursor: pointer;
+	max-width: 300px;
+	min-width: 150px;
+	margin: 5px;
+	padding: 15px 8px 7px 8px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #373737;
+	border-radius: 5px;
+	overflow: hidden;
+	z-index: 3;
+	flex: 1 1 20%;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+	transition-duration: 0.1s;
+}
+
+#template:hover {
+	z-index: 10;
+	transform: scale(1.1);
+}
+
+#other { 
+	align-self: flex-start;
+	width: fit-content;
+}
+
+#template #spotify_logo {
+	width: 70px;
+	margin: 15px;
+	margin-bottom: 12px;
+}
+
+#duration {
+	margin-block: 0;
+	color: white;
+	font-weight: lighter;
+	font-size: 15px;
+	margin: 3px 0;
+}
+
+#template #img {
+	height: 80px;
+	width: 80px;
+	background-color: white;
+}
+
+#template #identity {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: fit-content;
+	width: 100%;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+}
+
+#template #identity a {
+	overflow-wrap: break-word;
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+	text-decoration: none;
+	max-width: 100%;
+	width: fit-content;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+}
+
+#template #identity a:hover {
+	text-decoration: underline;
+	color: #950740;
+}
+
+#title {
+	font-size: 15px;
+	text-overflow: ellipsis;
+	font-weight: bolder;
+}
+
+#template #identity div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+#identity div a {
+	font-weight: lighter;
+}
+#submitter {
+	background: none;
+	font-size: 1.7em;
+	cursor: pointer;
+	text-decoration: 1.5px underline;
+	border: none;
+	font-weight: bolder;
+	color: white;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 20px;
+	width: fit-content;
+	max-width: 700px;
+	box-sizing: border-box;
+	padding: 17px;
+	margin-bottom: 10px;
+	background-color: none;
+	font-family: sans-serif;
+	text-align: center;
+	align-self: flex-end;
+}
+footer p {
+	margin: unset;
+}
+a {
+	color: #c3073f;
+	font-weight: bold;
+}
+a:hover {
+	color: crimson;
+}
+@media only screen and (max-width: 1000px) {
+	#container {
+		width: 90%;
+	}
+
+	#searchContainer,
+	#searcher {
+		width: 90%;
+		margin: 20px;
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#nav {
+		flex-direction: column;
+
+		align-self: flex-start;
+	}
+	input {
+		font-size: small;
+	}
+}

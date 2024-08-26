@@ -12,9 +12,12 @@ const { extractColors } = require('extract-colors')
 const client_id = process.env.clientID;
 const client_secret = process.env.clientSecret
 const geniusApiKey = process.env.geniusApiKey
+console.log(geniusApiKey);
+
+
 const app = express()
 
-app.listen(5500)
+app.listen(3000)
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
@@ -66,7 +69,8 @@ app.get(/^(\/response)/, (req, res) => {
 app.get(/^(\/gsearchreq)/, (req, res) => {
   let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const query = decodeURI(new URL(fullUrl).searchParams.get('query'))
-  console.log('asdfadsfadsgadsf')
+  console.log(query);
+  
   if (query) {
     const options = {
       apiKey: geniusApiKey,
@@ -82,7 +86,11 @@ app.get(/^(\/gsearchreq)/, (req, res) => {
       });
 
     })
-      .catch((e) => { res.status(501)({ 'server error': String(e) }) })
+      .catch((e) => {
+        console.log(e);
+        
+        res.status(501).json({ 'server error': String(e) })
+      })
   }
 })
 app.get(/^(\/slyrics)/, (req, res) => {
@@ -101,7 +109,7 @@ app.get(/^(\/slyrics)/, (req, res) => {
     .catch((e) => { res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' }) })
 })
 
-app.get(/^(\/glyrics)/, (req, res) => {
+app.get(/^(\/glyrics)/, (req, res,next) => {
   let url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl)
   let params = new URLSearchParams(url.search)
   if (!(params.has('id'))) { res.send('unformatted url'); return }
@@ -110,9 +118,10 @@ app.get(/^(\/glyrics)/, (req, res) => {
   const artists = decodeURI(params.get('fullartists'))
 
   getSongById(id, geniusApiKey).then((r) => {
-    res.render('lyrics', { pagelyrics: r.lyrics.split('\n'), title: r.title.replace(/\(feat.*\)/, ''), author: artists, art: r.albumArt }) 
+    res.render('lyrics', { pagelyrics: r.lyrics.split('\n'), title: r.title.replace(/\(feat.*\)/, ''), author: artists, art: r.albumArt })
   }).catch((e) => {
     res.status(501).json({ 'server error': String(e) })
     res.render('lyrics', { pagelyrics: ['sorry no lyrics for this one :( \n type them out yourself !'], title: 'title', author: 'artist', art: 'null' })
   })
+ 
 }) 

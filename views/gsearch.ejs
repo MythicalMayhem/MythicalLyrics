@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" type="image/x-icon" href="/src/favicon.png">
-    <link rel="stylesheet" href="sheets/gsearch.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search by spotify</title>
+    <link rel="stylesheet" href="sheets/genius.css" />
+    <link rel="icon" type="image/x-icon" href="/src/favicon.png" />
     <script defer src="scripts/gsearch.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav id="nav">
-        <a href="/">home</a>
-        <a href="/about">About</a>
-        <a href="/privacy">Privacy</a>
+      <a href="/">home</a>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
     </nav>
-    <form method="get">
-        <div id="wrapper">
-            <div id="searchContainer">
-                <input spellcheck="false" name="searcher" type="text" id="searcher"
-                    placeholder="search song name/link"><br>
-            </div>
-            <div id="container">
-
-            </div>
-        </div>
-    </form>
+    <div id="wrapper">
+      <form id="searchContainer">
+        <input
+          spellcheck="false"
+          name="searcher"
+          type="text"
+          id="searcher"
+          placeholder="search song name/link"
+        /><br />
+      </form>
+      <div id="container"></div>
+    </div>
     <footer>
-        <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
-        <p>Made Possible By
-            <a href="https://www.genius.com" target="_blank">Genius.com</a> and
-            <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
-        </p>
+      <p>
+        Made By
+        <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a>
+      </p>
+      <p>
+        Made Possible By
+        <a href="https://www.genius.com" target="_blank">Genius.com</a> and
+        <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
+      </p>
     </footer>
-</body>
-
+  </body>
 </html>

@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%=' '+title%> - <%=' '+author%>
-    </title>
-    <link rel="icon" type="image/x-icon" href="/src/favicon.png">
-    <link rel="stylesheet" href="sheets/lyrics.css">
-    <script defer src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=' '+title%> - <%=' '+author%></title>
+    <link rel="icon" type="image/x-icon" href="/src/favicon.png" />
+    <link rel="stylesheet" href="sheets/lyrics.css" />
+    <script
+      defer
+      src="https://html2canvas.hertzen.com/dist/html2canvas.js"
+    ></script>
     <script defer src="scripts/lyrics.js"></script>
-</head>
+  </head>
 
-<body>
+  <body onload="">
     <nav id="nav">
-        <a href="/">home</a>
-        <a href="/about">About</a>
-        <a href="/privacy">Privacy</a>
+      <a href="/">home</a>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
     </nav>
 
     <div id="body">
-        <div id="lyricsContainer" class="container">
-            <div class="container-inner">
-                <%pagelyrics.forEach(bar=> {bar = bar.toString().trim();if (bar == '') { %><br> 
-                    <% }else if (bar[0]==`[`){ %>
-                        <p id='bar'><span >
-                <%=bar %>
-            </span></p><br>
-            <%}else{%>
-                <p id="bar">
-                    <%= bar %>
-                </p>
-                <%} } )%>
+      <div id="lyricsContainer" class="container">
+        <div class="container-inner">
+          <%pagelyrics.forEach(bar=> {bar = bar.toString().trim();if (bar == '')
+          { %><br />
+          <% }else if (bar[0]==`[`){ %>
+          <p id="bar"><span> <%=bar %> </span></p>
+          <br />
+          <%}else{%>
+          <p id="bar"><%= bar %></p>
+          <%} } )%>
+        </div>
+        <div class="scroll-marker"></div>
+      </div>
 
-
-                    </div>
-                    <div class="scroll-marker"></div>
-                    </div>
-
-                    <div id="wrapper">
-                        <button onclick="downloadimage()" id="downloader">DOWNLOAD</button>
-                        <div id="mainContainer">
-                            <div id="identity">
-                                <img id="albumArt" src="<%=art%>" crossorigin="anonymous" alt="">
-                                <div id="name">
-                                    <p spellcheck="false" contenteditable="true">
-                                        <%=title%>
-                                    </p>
-                                    <p spellcheck="false" contenteditable="true">
-                                        <%=author%>
-                                    </p>
-                                </div>
-                            </div>
-                            <div id="barz">
-                                <br>
-                                <h3 spellcheck="false" contenteditable="true" id="bar">choose or type lyrics
-                                </h3>
-                                <br>
-                            </div>
-                            <div id="other">
-                                <img id="spotify_logo" style="height: 32px;" src="src/Spotify_Logo_RGB_White.png"
-                                    alt="spotify icon" crossorigin="anonymous" />
-                            </div>
-                        </div>
-                        <div id="colors">
-
-                        </div>
-                    </div>
-                    </div>
-                    <footer>
-                        <p>Made By <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a></p>
-                        <p>Made Possible By
-                            <a href="https://www.genius.com" target="_blank">Genius.com</a> and
-                            <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
-                        </p>
-                    </footer>
-                    </body>
-
+      <div id="wrapper">
+        <button onclick="downloadimage()" id="downloader">DOWNLOAD</button>
+        <div id="mainContainer">
+          <div id="identity">
+            <img id="albumArt" src="<%=art%>" alt="" />
+            <div id="name">
+              <p spellcheck="false" contenteditable="true"><%=title%></p>
+              <p spellcheck="false" contenteditable="true"><%=author%></p>
+            </div>
+          </div>
+          <div id="barz">
+            <br />
+            <h3 spellcheck="false" contenteditable="true" id="bar">
+              choose or type lyrics
+            </h3>
+            <br />
+          </div>
+          <div id="other">
+            <img
+              id="spotify_logo"
+              style="height: 32px"
+              src="src/Spotify_Logo_RGB_White.png"
+              alt="spotify icon"
+              crossorigin="anonymous"
+              />
+          </div>
+        </div>
+        <div id="colors"></div>
+      </div>
+    </div>
+    <footer>
+      <p>
+        Made By
+        <a href="https://github.com/MythicalMayhem/sgxlyrics">MythicalMayhem</a>
+      </p>
+      <p>
+        Made Possible By
+        <a href="https://www.genius.com" target="_blank">Genius.com</a> and
+        <a href="https://www.spotify.com" target="_blank">spotify.com</a> api
+      </p>
+    </footer>
+  </body>
 </html>

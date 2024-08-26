@@ -100,7 +100,7 @@ function adjust(col, amt) {
     let b = ((num >> 8) & 0x00FF) + amt; if (b > 255) { b = 255 } else if (b < 0) { b = 0 }
     return "#" + (g | (b << 8) | (r << 16)).toString(16);
 }
-function getContrastYIQ(hexcolor) { 
+function getContrastYIQ(hexcolor) {
     var r = parseInt(hexcolor.substring(1, 3), 16);
     var g = parseInt(hexcolor.substring(3, 5), 16);
     var b = parseInt(hexcolor.substring(5, 7), 16);
@@ -175,3 +175,8 @@ for (let i = 0; i < kids.length; i++) {
 }
 
 
+const getImg = (e) => {
+    const src = e.target.getAttribute('src')
+    console.log(src);
+    
+}

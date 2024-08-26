@@ -19,14 +19,25 @@ Now with Mythical Lyrics, getting track lyrics has never been easier, not only t
 </div>
  <br>
 
+# examples 
+<div align='center'>
+<img src='readme/lyricexp1.png' width='250px'/>
+<img src='readme/lyricexp3.png' width='250px'/>
+<img src='readme/lyricexp2.png' width='250px'/>
+</div >
+
 ## check it out 
 This project is currently deployed [here](https://mythicallyrics.onrender.com)<br>
 Though the app is yet to be accepted by spotify
+so logging in and search using spotify is not available
+
 
 ## Local development and testing
 
+### 1. make new directory and clone
+
 ```bash
-git clone https://github.com/MythicalMayhem/MythicalLyrics && cd MythicalLyrics
+git clone https://github.com/MythicalMayhem/MythicalLyrics .
 ```
 
 ### 2. Install dependencies
@@ -41,14 +52,14 @@ npm install
 npm run start
 ```
 
-
 ## Acknowledgements
-Refer to [https://mythicallyrics.onrender.com/privacy](https://mythicallyrics.onrender.com/privacy)
- - [Spotify API](https://developer.spotify.com/)
- - [Genius API](https://docs.genius.com)
- - [genius-lyrics-api](https://github.com/farshed/genius-lyrics-api)
 
+Refer to [https://mythicallyrics.onrender.com/privacy](https://mythicallyrics.onrender.com/privacy)
+
+- [Spotify API](https://developer.spotify.com/)
+- [Genius API](https://docs.genius.com)
+- [genius-lyrics-api](https://github.com/farshed/genius-lyrics-api)
 
 ## Authors
-- [@MythicalMayhem](https://github.com/MythicalMayhem)
 
+- [@MythicalMayhem](https://github.com/MythicalMayhem)
